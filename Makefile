@@ -1,18 +1,32 @@
-NAME = cub3D
+NAME=cub3D
 
-CC = cc
-CPPFLAGS = -Wall -Werror -Wextra
+SRCS	= lib/get_next_line/get_next_line.c	\
+				lib/get_next_line/get_next_line_utils.c	\
+				src/main.c \
 
-SRCS = main.c
+LIBFT = lib/libft/libft.a
+
+OBJ	= $(SRCS:.c=.o)
+
+%.o: %.c
+	cc -Wall -Wextra -Werror -Imlx -c $< -o $@
+
+$(NAME): $(OBJ)
+	make -s -C mlx
+	make -s -C lib/libft
+	cc $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT)
 
 all: $(NAME)
 
-$(NAME):
-	$(CC) $(CPPFLAGS) $(SRCS) -o $(NAME)
+clean:
+	make clean -s -C mlx
+	make clean -s -C lib/libft
+	rm -f $(OBJ)
 
-fclean:
+fclean: clean
+	make fclean -s -C lib/libft
 	rm -rf $(NAME)
 
-re: fclean all
+re:	fclean all
 
-.PHONY: fclean, all, re
+.PHONY:	all clean fclean re
