@@ -1,0 +1,11 @@
+*/**/.a
+*/**/.o
+*/**/.out
+
+.vscode
+cub3D
+*.a
+*.o
+*.out
+
+.DS_Store
