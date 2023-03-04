@@ -6,24 +6,11 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/04 16:14:09 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/04 16:20:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-typedef struct s_info {
-  double posX;
-  double posY;
-  double dirX;
-  double dirY;
-  double planeX;
-  double planeY;
-  void *mlx;
-  void *win;
-  double moveSpeed;
-  double rotSpeed;
-} t_info;
 
 int worldMap[24][24] = {
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -51,17 +38,17 @@ int worldMap[24][24] = {
     {1, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
-void verLine(t_info *info, int x, int y1, int y2, int color) {
+void verLine(t_game *game, int x, int y1, int y2, int color) {
   int y;
 
   y = y1;
   while (y <= y2) {
-    mlx_pixel_put(info->mlx, info->win, x, y, color);
+    mlx_pixel_put(game->mlx, game->win, x, y, color);
     y++;
   }
 }
 
-void calc(t_info *info) {
+void calc(t_game *game) {
   int x;
   double cameraX;
   double rayDirX;
@@ -83,10 +70,10 @@ void calc(t_info *info) {
   x = 0;
   while (x < WINDOW_WIDTH) {
     cameraX = 2 * x / (double)WINDOW_WIDTH - 1;
-    rayDirX = info->dirX + info->planeX * cameraX;
-    rayDirY = info->dirY + info->planeY * cameraX;
-    mapX = (int)info->posX;
-    mapY = (int)info->posY;
+    rayDirX = game->dirX + game->planeX * cameraX;
+    rayDirY = game->dirY + game->planeY * cameraX;
+    mapX = (int)game->posX;
+    mapY = (int)game->posY;
     // length of ray from current position to next x or y-side
     // length of ray from one x or y-side to next x or y-side
     deltaDistX = fabs(1 / rayDirX);
@@ -96,17 +83,17 @@ void calc(t_info *info) {
     int side;     // was a NS or a EW wall hit?
     if (rayDirX < 0) {
       stepX = -1;
-      sideDistX = (info->posX - mapX) * deltaDistX;
+      sideDistX = (game->posX - mapX) * deltaDistX;
     } else {
       stepX = 1;
-      sideDistX = (mapX + 1.0 - info->posX) * deltaDistX;
+      sideDistX = (mapX + 1.0 - game->posX) * deltaDistX;
     }
     if (rayDirY < 0) {
       stepY = -1;
-      sideDistY = (info->posY - mapY) * deltaDistY;
+      sideDistY = (game->posY - mapY) * deltaDistY;
     } else {
       stepY = 1;
-      sideDistY = (mapY + 1.0 - info->posY) * deltaDistY;
+      sideDistY = (mapY + 1.0 - game->posY) * deltaDistY;
     }
     while (hit == 0) {
       // jump to next map square, OR in x-direction, OR in y-direction
@@ -124,9 +111,9 @@ void calc(t_info *info) {
         hit = 1;
     }
     if (side == 0)
-      perpWallDist = (mapX - info->posX + (1 - stepX) / 2) / rayDirX;
+      perpWallDist = (mapX - game->posX + (1 - stepX) / 2) / rayDirX;
     else
-      perpWallDist = (mapY - info->posY + (1 - stepY) / 2) / rayDirY;
+      perpWallDist = (mapY - game->posY + (1 - stepY) / 2) / rayDirY;
     // Calculate height of line to draw on screen
     lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
     // calculate lowest and highest pixel to fill in current stripe
@@ -148,73 +135,77 @@ void calc(t_info *info) {
       color = 0xFFFF00;
     if (side == 1)
       color = color / 2;
-    verLine(info, x, drawStart, drawEnd, color);
+    verLine(game, x, drawStart, drawEnd, color);
     x++;
   }
 }
 
-int main_loop(t_info *info) {
-  mlx_clear_window(info->mlx, info->win);
-  calc(info);
+int main_loop(t_game *game) {
+  mlx_clear_window(game->mlx, game->win);
+  calc(game);
   return (0);
 }
 
-int key_press(int key, t_info *info) {
+int key_press(int key, t_game *game) {
   double oldDirX;
   double oldPlaneX;
 
   if (key == KEY_W) {
-    if (!worldMap[(int)(info->posX + info->dirX * info->moveSpeed)][(int)(info->posY)])
-      info->posX += info->dirX * info->moveSpeed;
-    if (!worldMap[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
-      info->posY += info->dirY * info->moveSpeed;
+    if (!worldMap[(int)(game->posX + game->dirX * game->moveSpeed)][(int)(game->posY)])
+      game->posX += game->dirX * game->moveSpeed;
+    if (!worldMap[(int)(game->posX)][(int)(game->posY + game->dirY * game->moveSpeed)])
+      game->posY += game->dirY * game->moveSpeed;
   }
   // move backwards if no wall behind you
   if (key == KEY_S) {
-    if (!worldMap[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
-      info->posX -= info->dirX * info->moveSpeed;
-    if (!worldMap[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
-      info->posY -= info->dirY * info->moveSpeed;
+    if (!worldMap[(int)(game->posX - game->dirX * game->moveSpeed)][(int)(game->posY)])
+      game->posX -= game->dirX * game->moveSpeed;
+    if (!worldMap[(int)(game->posX)][(int)(game->posY - game->dirY * game->moveSpeed)])
+      game->posY -= game->dirY * game->moveSpeed;
   }
   // rotate to the right
   if (key == KEY_D) {
     // both camera direction and camera plane must be rotated
-    oldDirX = info->dirX;
-    info->dirX = info->dirX * cos(-info->rotSpeed) - info->dirY * sin(-info->rotSpeed);
-    info->dirY = oldDirX * sin(-info->rotSpeed) + info->dirY * cos(-info->rotSpeed);
-    oldPlaneX = info->planeX;
-    info->planeX = info->planeX * cos(-info->rotSpeed) - info->planeY * sin(-info->rotSpeed);
-    info->planeY = oldPlaneX * sin(-info->rotSpeed) + info->planeY * cos(-info->rotSpeed);
+    oldDirX = game->dirX;
+    game->dirX = game->dirX * cos(-game->rotationSpeed) - game->dirY * sin(-game->rotationSpeed);
+    game->dirY = oldDirX * sin(-game->rotationSpeed) + game->dirY * cos(-game->rotationSpeed);
+    oldPlaneX = game->planeX;
+    game->planeX = game->planeX * cos(-game->rotationSpeed) - game->planeY * sin(-game->rotationSpeed);
+    game->planeY = oldPlaneX * sin(-game->rotationSpeed) + game->planeY * cos(-game->rotationSpeed);
   }
   // rotate to the left
   if (key == KEY_A) {
     // both camera direction and camera plane must be rotated
-    oldDirX = info->dirX;
-    info->dirX = info->dirX * cos(info->rotSpeed) - info->dirY * sin(info->rotSpeed);
-    info->dirY = oldDirX * sin(info->rotSpeed) + info->dirY * cos(info->rotSpeed);
-    oldPlaneX = info->planeX;
-    info->planeX = info->planeX * cos(info->rotSpeed) - info->planeY * sin(info->rotSpeed);
-    info->planeY = oldPlaneX * sin(info->rotSpeed) + info->planeY * cos(info->rotSpeed);
+    oldDirX = game->dirX;
+    game->dirX = game->dirX * cos(game->rotationSpeed) - game->dirY * sin(game->rotationSpeed);
+    game->dirY = oldDirX * sin(game->rotationSpeed) + game->dirY * cos(game->rotationSpeed);
+    oldPlaneX = game->planeX;
+    game->planeX = game->planeX * cos(game->rotationSpeed) - game->planeY * sin(game->rotationSpeed);
+    game->planeY = oldPlaneX * sin(game->rotationSpeed) + game->planeY * cos(game->rotationSpeed);
   }
   if (key == KEY_ESC)
     exit(0);
   return (0);
 }
 
-int main(void) {
-  t_info info;
+void set_game_config(t_game *game) {
+  game->mlx = mlx_init();
+  game->posX = 12;
+  game->posY = 5;
+  game->dirX = -1;
+  game->dirY = 0;
+  game->planeX = 0;
+  game->planeY = 0.66;
+  game->moveSpeed = 0.5;
+  game->rotationSpeed = 0.25;
+  game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "mlx");
+}
 
-  info.mlx = mlx_init();
-  info.posX = 12;
-  info.posY = 5;
-  info.dirX = -1;
-  info.dirY = 0;
-  info.planeX = 0;
-  info.planeY = 0.66;
-  info.moveSpeed = 0.5;
-  info.rotSpeed = 0.05;
-  info.win = mlx_new_window(info.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "mlx");
-  mlx_loop_hook(info.mlx, &main_loop, &info);
-  mlx_hook(info.win, ON_KEYDOWN, 0, &key_press, &info);
-  mlx_loop(info.mlx);
+int main(void) {
+  t_game game;
+
+  set_game_config(&game);
+  mlx_loop_hook(game.mlx, &main_loop, &game);
+  mlx_hook(game.win, ON_KEYDOWN, 0, &key_press, &game);
+  mlx_loop(game.mlx);
 }

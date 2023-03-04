@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/04 16:14:23 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/04 16:17:43 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 typedef struct s_game {
   void *mlx;
   void *win;
+  double posX;
+  double posY;
+  double dirX;
+  double dirY;
+  double planeX;
+  double planeY;
+  double moveSpeed;
+  double rotationSpeed;
 } t_game;
 
 enum e_event_code {
