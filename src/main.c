@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/04 16:20:45 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/04 18:59:11 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,27 +114,22 @@ void calc(t_game *game) {
       perpWallDist = (mapX - game->posX + (1 - stepX) / 2) / rayDirX;
     else
       perpWallDist = (mapY - game->posY + (1 - stepY) / 2) / rayDirY;
-    // Calculate height of line to draw on screen
     lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
-    // calculate lowest and highest pixel to fill in current stripe
+
+    // start of line
     drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
-    if (drawStart < 0)
-      drawStart = 0;
+    if (drawStart < 0) drawStart = 0;
+    // end of line
     drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
-    if (drawEnd >= WINDOW_HEIGHT)
-      drawEnd = WINDOW_HEIGHT - 1;
-    if (worldMap[mapY][mapX] == 1)
-      color = 0xFF0000;
-    else if (worldMap[mapY][mapX] == 2)
-      color = 0x00FF00;
-    else if (worldMap[mapY][mapX] == 3)
-      color = 0x0000FF;
-    else if (worldMap[mapY][mapX] == 4)
-      color = 0xFFFFFF;
-    else
-      color = 0xFFFF00;
-    if (side == 1)
-      color = color / 2;
+    if (drawEnd >= WINDOW_HEIGHT) drawEnd = WINDOW_HEIGHT - 1;
+
+    color = 0xFFFF00;
+    if (worldMap[mapY][mapX] == 1) color = 0xFF0000;
+    if (worldMap[mapY][mapX] == 2) color = 0x00FF00;
+    if (worldMap[mapY][mapX] == 3) color = 0x0000FF;
+    if (worldMap[mapY][mapX] == 4) color = 0xFFFFFF;
+    if (side == 1) color = color / 2;
+
     verLine(game, x, drawStart, drawEnd, color);
     x++;
   }
