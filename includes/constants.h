@@ -13,8 +13,8 @@
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
 
-# define window_width 900
-# define window_height 500
+# define WINDOW_WIDTH 900
+# define WINDOW_HEIGHT 500
 
 enum	e_keyboard_letters
 {

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/03 15:14:07 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/04 15:58:41 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ void	calc(t_info *info)
 	int		color;
 
 	x = 0;
-	while (x < window_width)
+	while (x < WINDOW_WIDTH)
 	{
-		cameraX = 2 * x / (double)window_width - 1;
+		cameraX = 2 * x / (double)WINDOW_WIDTH - 1;
 		rayDirX = info->dirX + info->planeX * cameraX;
 		rayDirY = info->dirY + info->planeY * cameraX;
 		mapX = (int)info->posX;
@@ -143,14 +143,14 @@ void	calc(t_info *info)
 		else
 			perpWallDist = (mapY - info->posY + (1 - stepY) / 2) / rayDirY;
 		//Calculate height of line to draw on screen
-		lineHeight = (int)(window_height / perpWallDist);
+		lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
 		//calculate lowest and highest pixel to fill in current stripe
-		drawStart = -lineHeight / 2 + window_height / 2;
+		drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
 		if (drawStart < 0)
 			drawStart = 0;
-		drawEnd = lineHeight / 2 + window_height / 2;
-		if (drawEnd >= window_height)
-			drawEnd = window_height - 1;
+		drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
+		if (drawEnd >= WINDOW_HEIGHT)
+			drawEnd = WINDOW_HEIGHT - 1;
 		if (worldMap[mapY][mapX] == 1)
 			color = 0xFF0000;
 		else if (worldMap[mapY][mapX] == 2)
@@ -246,8 +246,8 @@ int	main(void)
 	info.planeX = 0;
 	info.planeY = 0.66;
 	info.moveSpeed = 0.5;
-	info.rotSpeed = 0.25;
-	info.win = mlx_new_window(info.mlx, window_width, window_height, "mlx");
+	info.rotSpeed = 0.05;
+	info.win = mlx_new_window(info.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "mlx");
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, ON_KEYDOWN, 0, &key_press, &info);
 	mlx_loop(info.mlx);
