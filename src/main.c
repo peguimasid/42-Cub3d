@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/04 18:59:11 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/06 15:08:48 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,31 +135,25 @@ void calc(t_game *game) {
   }
 }
 
-int main_loop(t_game *game) {
-  mlx_clear_window(game->mlx, game->win);
-  calc(game);
-  return (0);
-}
-
-int key_press(int key, t_game *game) {
+int handle_keys(t_game *game) {
   double oldDirX;
   double oldPlaneX;
 
-  if (key == KEY_W) {
+  if (game->keys.is_w_pressed) {
     if (!worldMap[(int)(game->posX + game->dirX * game->moveSpeed)][(int)(game->posY)])
       game->posX += game->dirX * game->moveSpeed;
     if (!worldMap[(int)(game->posX)][(int)(game->posY + game->dirY * game->moveSpeed)])
       game->posY += game->dirY * game->moveSpeed;
   }
   // move backwards if no wall behind you
-  if (key == KEY_S) {
+  if (game->keys.is_s_pressed) {
     if (!worldMap[(int)(game->posX - game->dirX * game->moveSpeed)][(int)(game->posY)])
       game->posX -= game->dirX * game->moveSpeed;
     if (!worldMap[(int)(game->posX)][(int)(game->posY - game->dirY * game->moveSpeed)])
       game->posY -= game->dirY * game->moveSpeed;
   }
   // rotate to the right
-  if (key == KEY_D) {
+  if (game->keys.is_d_pressed) {
     // both camera direction and camera plane must be rotated
     oldDirX = game->dirX;
     game->dirX = game->dirX * cos(-game->rotationSpeed) - game->dirY * sin(-game->rotationSpeed);
@@ -169,7 +163,7 @@ int key_press(int key, t_game *game) {
     game->planeY = oldPlaneX * sin(-game->rotationSpeed) + game->planeY * cos(-game->rotationSpeed);
   }
   // rotate to the left
-  if (key == KEY_A) {
+  if (game->keys.is_a_pressed) {
     // both camera direction and camera plane must be rotated
     oldDirX = game->dirX;
     game->dirX = game->dirX * cos(game->rotationSpeed) - game->dirY * sin(game->rotationSpeed);
@@ -178,9 +172,30 @@ int key_press(int key, t_game *game) {
     game->planeX = game->planeX * cos(game->rotationSpeed) - game->planeY * sin(game->rotationSpeed);
     game->planeY = oldPlaneX * sin(game->rotationSpeed) + game->planeY * cos(game->rotationSpeed);
   }
-  if (key == KEY_ESC)
-    exit(0);
   return (0);
+}
+
+int main_loop(t_game *game) {
+  mlx_clear_window(game->mlx, game->win);
+  handle_keys(game);
+  calc(game);
+  return (0);
+}
+
+int key_down(int key, t_game *game) {
+  if (key == KEY_W) game->keys.is_w_pressed = 1;
+  if (key == KEY_A) game->keys.is_a_pressed = 1;
+  if (key == KEY_S) game->keys.is_s_pressed = 1;
+  if (key == KEY_D) game->keys.is_d_pressed = 1;
+  return 0;
+}
+
+int key_up(int key, t_game *game) {
+  if (key == KEY_W) game->keys.is_w_pressed = 0;
+  if (key == KEY_A) game->keys.is_a_pressed = 0;
+  if (key == KEY_S) game->keys.is_s_pressed = 0;
+  if (key == KEY_D) game->keys.is_d_pressed = 0;
+  return 0;
 }
 
 void set_game_config(t_game *game) {
@@ -191,8 +206,12 @@ void set_game_config(t_game *game) {
   game->dirY = 0;
   game->planeX = 0;
   game->planeY = 0.66;
-  game->moveSpeed = 0.5;
-  game->rotationSpeed = 0.25;
+  game->moveSpeed = 0.25;
+  game->rotationSpeed = 0.10;
+  game->keys.is_w_pressed = 0;
+  game->keys.is_a_pressed = 0;
+  game->keys.is_s_pressed = 0;
+  game->keys.is_d_pressed = 0;
   game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "mlx");
 }
 
@@ -201,6 +220,7 @@ int main(void) {
 
   set_game_config(&game);
   mlx_loop_hook(game.mlx, &main_loop, &game);
-  mlx_hook(game.win, ON_KEYDOWN, 0, &key_press, &game);
+  mlx_hook(game.win, ON_KEYDOWN, 0, &key_down, &game);
+  mlx_hook(game.win, ON_KEYUP, 0, &key_up, &game);
   mlx_loop(game.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/04 16:17:43 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/06 15:03:12 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 #include "../includes/constants.h"
 #include "../mlx/mlx.h"
 
+typedef struct s_pressed {
+  int is_w_pressed;
+  int is_a_pressed;
+  int is_s_pressed;
+  int is_d_pressed;
+} t_pressed;
+
 typedef struct s_game {
   void *mlx;
   void *win;
@@ -32,6 +39,7 @@ typedef struct s_game {
   double planeY;
   double moveSpeed;
   double rotationSpeed;
+  t_pressed keys;
 } t_game;
 
 enum e_event_code {
