@@ -3,6 +3,7 @@ NAME=cub3D
 SRCS	= lib/get_next_line/get_next_line.c	\
 				lib/get_next_line/get_next_line_utils.c	\
 				src/main.c \
+				src/init.c \
 				src/handle_keys.c \
 
 LIBFT = lib/libft/libft.a

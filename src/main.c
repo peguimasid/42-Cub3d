@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/07 17:41:13 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/07 17:43:25 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,6 @@ int	main_loop(t_game *game)
 	printf("is s pressed = %d\n", game->keys.is_s_pressed);
 	printf("is d pressed = %d\n", game->keys.is_d_pressed);
 	return (0);
-}
-
-void	init_config(t_game *game)
-{
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
-	game->keys.is_w_pressed = 0;
-	game->keys.is_a_pressed = 0;
-	game->keys.is_s_pressed = 0;
-	game->keys.is_d_pressed = 0;
 }
 
 int	main(void)
