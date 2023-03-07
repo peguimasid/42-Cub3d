@@ -11,30 +11,34 @@
 /* ************************************************************************** */
 
 #ifndef CONSTANTS_H
-#define CONSTANTS_H
+# define CONSTANTS_H
 
-#define WINDOW_WIDTH 900
-#define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH 900
+# define WINDOW_HEIGHT 500
 
-enum e_keyboard_letters {
-  KEY_A = 0,
-  KEY_D = 2,
-  KEY_S = 1,
-  KEY_W = 13,
+enum	e_keyboard_letters
+{
+	KEY_A = 0,
+	KEY_D = 2,
+	KEY_S = 1,
+	KEY_W = 13,
 };
 
-enum e_keyboard_arrows {
-  ARROW_LEFT = 123,
-  ARROW_RIGHT = 124,
+enum	e_keyboard_arrows
+{
+	ARROW_LEFT = 123,
+	ARROW_RIGHT = 124,
 };
 
-enum e_keyboard_utils {
-  KEY_ESC = 53,
+enum	e_keyboard_utils
+{
+	KEY_ESC = 53,
 };
 
-enum e_event_codes {
-  ON_KEYDOWN = 2,
-  ON_KEYUP = 3,
+enum	e_event_codes
+{
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
 };
 
 #endif
