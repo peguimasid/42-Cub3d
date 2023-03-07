@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/06 15:03:12 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/07 12:22:10 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../includes/constants.h"
+#include "../lib/get_next_line/get_next_line.h"
+#include "../lib/libft/libft.h"
 #include "../mlx/mlx.h"
+#include "constants.h"
 
 typedef struct s_pressed {
   int is_w_pressed;
