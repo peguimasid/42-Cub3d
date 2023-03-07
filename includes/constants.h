@@ -39,6 +39,7 @@ enum	e_event_codes
 {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
+	ON_CLOSE_WINDOW = 17
 };
 
 #endif

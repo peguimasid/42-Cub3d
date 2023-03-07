@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/07 17:37:25 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/07 17:40:54 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ typedef struct s_game
 	t_pressed	keys;
 }				t_game;
 
-enum			e_event_code
-{
-	E_KEYPRESS = 2,
-	E_CLOSE_WINDOW = 17
-};
+int				handle_keydown(int key, t_game *game);
+int				handle_keyup(int key, t_game *game);
 
 #endif

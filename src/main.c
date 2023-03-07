@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/07 17:36:32 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/07 17:41:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,6 @@ int	main_loop(t_game *game)
 	printf("is a pressed = %d\n", game->keys.is_a_pressed);
 	printf("is s pressed = %d\n", game->keys.is_s_pressed);
 	printf("is d pressed = %d\n", game->keys.is_d_pressed);
-	return (0);
-}
-
-int	key_down(int key, t_game *game)
-{
-	if (key == KEY_W)
-		game->keys.is_w_pressed = 1;
-	if (key == KEY_A)
-		game->keys.is_a_pressed = 1;
-	if (key == KEY_S)
-		game->keys.is_s_pressed = 1;
-	if (key == KEY_D)
-		game->keys.is_d_pressed = 1;
-	return (0);
-}
-
-int	key_up(int key, t_game *game)
-{
-	if (key == KEY_W)
-		game->keys.is_w_pressed = 0;
-	if (key == KEY_A)
-		game->keys.is_a_pressed = 0;
-	if (key == KEY_S)
-		game->keys.is_s_pressed = 0;
-	if (key == KEY_D)
-		game->keys.is_d_pressed = 0;
 	return (0);
 }
 
@@ -63,7 +37,7 @@ int	main(void)
 
 	init_config(&game);
 	mlx_loop_hook(game.mlx, &main_loop, &game);
-	mlx_hook(game.win, ON_KEYDOWN, 0, &key_down, &game);
-	mlx_hook(game.win, ON_KEYUP, 0, &key_up, &game);
+	mlx_hook(game.win, ON_KEYDOWN, 0, &handle_keydown, &game);
+	mlx_hook(game.win, ON_KEYUP, 0, &handle_keyup, &game);
 	mlx_loop(game.mlx);
 }
