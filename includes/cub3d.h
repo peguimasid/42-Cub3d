@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/07 17:43:17 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/08 18:34:33 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_game
 	t_pressed	keys;
 }				t_game;
 
-void			init_config(t_game *game);
+void			init_game(t_game *game);
 
 int				handle_keydown(int key, t_game *game);
 int				handle_keyup(int key, t_game *game);
