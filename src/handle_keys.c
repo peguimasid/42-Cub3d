@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:39:47 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/07 17:40:09 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/09 17:52:53 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	handle_keydown(int key, t_game *game)
 		game->keys.is_s_pressed = 1;
 	if (key == KEY_D)
 		game->keys.is_d_pressed = 1;
+	if (key == KEY_ESC)
+		close_game(game);
 	return (0);
 }
 
