@@ -1,11 +1,6 @@
 NAME=cub3D
 
-SRCS	= lib/get_next_line/get_next_line.c	\
-				lib/get_next_line/get_next_line_utils.c	\
-				src/main.c \
-				src/init.c \
-				src/common.c \
-				src/handle_keys.c \
+SRCS	= $(shell find src lib/get_next_line -name '*.c')
 
 LIBFT = lib/libft/libft.a
 
