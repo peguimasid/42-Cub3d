@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/09 17:47:42 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/09 17:56:47 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	main(void)
 	t_game	game;
 
 	init_game(&game);
-	mlx_loop_hook(game.mlx, &main_loop, &game);
-	mlx_hook(game.win, ON_KEYDOWN, 0, &handle_keydown, &game);
-	mlx_hook(game.win, ON_KEYUP, 0, &handle_keyup, &game);
-	mlx_hook(game.win, ON_CLOSE_WINDOW, 0, &close_game, &game);
+	mlx_loop_hook(game.mlx, main_loop, &game);
+	mlx_hook(game.win, ON_KEYDOWN, 0, handle_keydown, &game);
+	mlx_hook(game.win, ON_KEYUP, 0, handle_keyup, &game);
+	mlx_hook(game.win, ON_CLOSE_WINDOW, 0, close_game, &game);
 	mlx_loop(game.mlx);
 }
