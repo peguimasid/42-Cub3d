@@ -1,8 +1,8 @@
 NAME=cub3D
 
-SRCS	= $(shell find src lib/get_next_line -name '*.c')
+SRCS=$(shell find src lib/get_next_line -name '*.c')
 
-LIBFT = lib/libft/libft.a
+LIBFT=lib/libft/libft.a
 
 $(NAME):
 	make -s -C mlx
