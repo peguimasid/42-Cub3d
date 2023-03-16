@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 19:59:55 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 20:00:41 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_game
 }				t_game;
 
 // General
-void			init_game(t_game *game);
 int				close_game(t_game *game);
 
 int				handle_keydown(int key, t_game *game);
@@ -47,6 +46,7 @@ int				handle_keyup(int key, t_game *game);
 int				send_valid_params(int argc, char **argv);
 
 // Start
+void			init_game(t_game *game);
 void			init_ray(t_game *game);
 void			init_keys(t_game *game);
 void			init_textures(t_game *game);
