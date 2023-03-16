@@ -25,8 +25,8 @@ typedef struct s_textures
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
+	float	x_pos;
+	float	y_pos;
 	char	dir;
 	float	speed;
 }			t_player;
