@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 17:42:52 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 19:51:25 by gmasid           ###   ########.fr       */
+/*   Created: 2023/03/16 19:53:12 by gmasid            #+#    #+#             */
+/*   Updated: 2023/03/16 20:00:03 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
-void	init_map(t_game *game)
-{
-	game->map.array = NULL;
-	game->map.height = 0;
-	game->map.width = 0;
-}
+#include "../../includes/cub3d.h"
 
 void	init_ray(t_game *game)
 {
@@ -50,21 +43,11 @@ void	init_textures(t_game *game)
 	game->textures.east = NULL;
 	game->textures.west = NULL;
 	// TODO: Create function to open image and assign to t_img struct
-	// game->textures.black = mlx_load_image(game->mlx, "textures/black.xpm");
+	// game->textures.black = load_image(game->mlx, "textures/black.xpm");
 }
 
-void	init_game(t_game *game)
+void	init_frame(t_game *game)
 {
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
-	init_map(game);
-	init_ray(game);
-	init_keys(game);
-	init_textures(game);
-	game->player.dir = 0;
-	game->player.speed = 0.10;
-	game->player.x_pos = -1;
-	game->player.y_pos = -1;
 	game->frame.count = 0;
 	game->frame.rate = 30;
 }
