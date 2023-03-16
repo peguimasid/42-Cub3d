@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 18:58:02 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 19:03:44 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,17 @@ typedef struct s_game
 	t_player	player;
 }				t_game;
 
+// General
 void			init_game(t_game *game);
 int				close_game(t_game *game);
 
 int				handle_keydown(int key, t_game *game);
 int				handle_keyup(int key, t_game *game);
 
+// Validation
 int				send_valid_params(int argc, char **argv);
+
+// Error
 int				throw_error(char *error);
 
 #endif
