@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 18:11:58 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 18:54:24 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2)
-		return (throw_error("Usage: ./cub3D maps/<map>.cub"));
-	(void)argv;
+	if (!send_valid_params(argc, argv))
+		return (1);
 	init_game(&game);
 	mlx_loop_hook(game.mlx, main_loop, &game);
 	mlx_hook(game.win, ON_KEYDOWN, 0, handle_keydown, &game);

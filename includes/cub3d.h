@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 18:44:18 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 18:54:36 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_map
 typedef struct s_frame
 {
 	long		count;
-	int rate
+	int			rate;
 }				t_frame;
 
 typedef struct s_game
@@ -81,6 +81,7 @@ int				close_game(t_game *game);
 int				handle_keydown(int key, t_game *game);
 int				handle_keyup(int key, t_game *game);
 
+int				send_valid_params(int argc, char **argv);
 int				throw_error(char *error);
 
 #endif
