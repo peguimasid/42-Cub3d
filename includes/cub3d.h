@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/09 17:48:07 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 17:52:36 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ int				close_game(t_game *game);
 
 int				handle_keydown(int key, t_game *game);
 int				handle_keyup(int key, t_game *game);
+
+int				throw_error(char *error);
 
 #endif
