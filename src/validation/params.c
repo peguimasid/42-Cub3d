@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:46:51 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 18:53:49 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 18:58:36 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,22 @@ int	is_valid_ext(char *path)
 	return (1);
 }
 
+int	can_open_file(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	close(fd);
+	return (fd > 0);
+}
+
 int	send_valid_params(int argc, char **argv)
 {
 	if (argc != 2)
 		return (throw_error("Usage: ./cub3D maps/<map>.cub"));
 	if (!is_valid_ext(argv[1]))
 		return (throw_error("Invalid file extension"));
+	if (!can_open_file(argv[1]))
+		return (throw_error("Cannot open file"));
 	return (1);
 }
