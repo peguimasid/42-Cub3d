@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 18:09:22 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 18:10:24 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ typedef struct s_player
 	float		speed;
 }				t_player;
 
+typedef struct s_ray
+{
+	float		increment_angle;
+	float		angle;
+	float		cos;
+	float		sin;
+	float		hfov;
+	float		limit;
+	int			precision;
+}				t_ray;
+
 typedef struct s_pressed
 {
 	int			is_w_pressed;
@@ -42,6 +53,7 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	t_ray		ray;
 	t_pressed	keys;
 	t_player	player;
 }				t_game;
