@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 18:11:07 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 18:44:18 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,27 @@ typedef struct s_pressed
 	int			is_arrow_right_pressed;
 }				t_pressed;
 
+typedef struct s_map
+{
+	char		**array;
+	int			width;
+	int			height;
+}				t_map;
+
+typedef struct s_frame
+{
+	long		count;
+	int rate
+}				t_frame;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	t_map		map;
 	t_ray		ray;
 	t_pressed	keys;
+	t_frame		frame;
 	t_player	player;
 }				t_game;
 
