@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 19:11:42 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 19:42:19 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_game
 	t_pressed	keys;
 	t_frame		frame;
 	t_player	player;
+	t_textures	textures;
 }				t_game;
 
 // General

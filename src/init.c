@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:42:52 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 19:38:59 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 19:51:25 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,15 @@ void	init_keys(t_game *game)
 	game->keys.is_arrow_right_pressed = 0;
 }
 
-void	init_player(t_game *game)
+void	init_textures(t_game *game)
 {
-	game->player.dir = 0;
-	game->player.speed = 0.10;
-	game->player.x_pos = -1;
-	game->player.y_pos = -1;
+	game->textures.window_image = NULL;
+	game->textures.north = NULL;
+	game->textures.south = NULL;
+	game->textures.east = NULL;
+	game->textures.west = NULL;
+	// TODO: Create function to open image and assign to t_img struct
+	// game->textures.black = mlx_load_image(game->mlx, "textures/black.xpm");
 }
 
 void	init_game(t_game *game)
@@ -57,7 +60,11 @@ void	init_game(t_game *game)
 	init_map(game);
 	init_ray(game);
 	init_keys(game);
-	init_player(game);
+	init_textures(game);
+	game->player.dir = 0;
+	game->player.speed = 0.10;
+	game->player.x_pos = -1;
+	game->player.y_pos = -1;
 	game->frame.count = 0;
 	game->frame.rate = 30;
 }
