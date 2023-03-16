@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 19:03:44 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 19:10:29 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,28 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+
+typedef struct s_img
+{
+	int			height;
+	int			width;
+	void		*i;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+}				t_img;
+
+typedef struct s_textures
+{
+	t_img		*north;
+	t_img		*south;
+	t_img		*east;
+	t_img		*west;
+	t_img		*black;
+	int			floor;
+	int			ceiling;
+}				t_textures;
 
 typedef struct s_player
 {
