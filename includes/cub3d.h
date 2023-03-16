@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 17:52:36 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 18:09:22 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@
 # include <stdlib.h>
 # include <string.h>
 
+typedef struct s_player
+{
+	float		x;
+	float		y;
+	char		dir;
+	float		speed;
+}				t_player;
+
 typedef struct s_pressed
 {
 	int			is_w_pressed;
@@ -35,6 +43,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_pressed	keys;
+	t_player	player;
 }				t_game;
 
 void			init_game(t_game *game);
