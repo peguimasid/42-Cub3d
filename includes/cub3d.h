@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 18:10:24 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/16 18:11:07 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_pressed
 	int			is_a_pressed;
 	int			is_s_pressed;
 	int			is_d_pressed;
+	int			is_arrow_left_pressed;
+	int			is_arrow_right_pressed;
 }				t_pressed;
 
 typedef struct s_game
