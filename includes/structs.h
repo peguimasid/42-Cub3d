@@ -40,6 +40,8 @@ typedef struct s_ray
 	float	hfov;
 	float	limit;
 	int		precision;
+	float	x_pos;
+	float	y_pos;
 }			t_ray;
 
 typedef struct s_pressed
