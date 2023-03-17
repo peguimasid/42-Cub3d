@@ -19,8 +19,8 @@
 enum	e_keyboard_letters
 {
 	KEY_A = 0,
-	KEY_D = 2,
 	KEY_S = 1,
+	KEY_D = 2,
 	KEY_W = 13,
 };
 
