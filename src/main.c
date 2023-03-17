@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/17 17:28:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/17 19:38:03 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,4 @@ int	main(int argc, char **argv)
 	if (!send_valid_file(argc, argv))
 		return (1);
 	init_game(&game);
-	mlx_loop_hook(game.mlx, main_loop, &game);
-	mlx_hook(game.win, ON_KEYDOWN, 0, handle_keydown, &game);
-	mlx_hook(game.win, ON_KEYUP, 0, handle_keyup, &game);
-	mlx_hook(game.win, ON_CLOSE_WINDOW, 0, close_game, &game);
-	mlx_loop(game.mlx);
 }
