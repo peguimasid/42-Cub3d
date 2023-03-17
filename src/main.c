@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 18:54:24 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/17 17:28:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (!send_valid_params(argc, argv))
+	if (!send_valid_file(argc, argv))
 		return (1);
 	init_game(&game);
 	mlx_loop_hook(game.mlx, main_loop, &game);

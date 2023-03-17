@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/17 14:00:24 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/17 17:27:09 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ int				handle_keydown(int key, t_game *game);
 int				handle_keyup(int key, t_game *game);
 
 // Validation
-int				send_valid_params(int argc, char **argv);
 int				send_valid_file(int argc, char **argv);
-int				send_valid_map(char **argv);
 
 // Start
 void			init_game(t_game *game);
