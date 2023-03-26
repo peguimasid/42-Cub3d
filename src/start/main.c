@@ -6,11 +6,16 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:42:52 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/17 19:38:08 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/26 10:46:18 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	init_mlx(t_game *game)
+{
+	game->mlx = mlx_init();
+}
 
 void	init_map(t_game *game)
 {
@@ -29,6 +34,7 @@ void	init_player(t_game *game)
 
 void	init_game(t_game *game)
 {
+	init_mlx(game);
 	init_map(game);
 	init_ray(game);
 	init_keys(game);
