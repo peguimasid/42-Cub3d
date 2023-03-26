@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:42:52 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/26 10:46:18 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/26 10:49:41 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_player(t_game *game)
 	game->player.y_pos = -1;
 }
 
-void	init_game(t_game *game)
+void	init_cub(t_game *game)
 {
 	init_mlx(game);
 	init_map(game);

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/17 19:39:11 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/26 10:49:37 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ int	main(int argc, char **argv)
 
 	if (!send_valid_file(argc, argv))
 		return (1);
-	init_game(&game);
+	init_cub(&game);
 }

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/17 17:27:09 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/26 10:49:44 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int				handle_keyup(int key, t_game *game);
 int				send_valid_file(int argc, char **argv);
 
 // Start
-void			init_game(t_game *game);
+void			init_cub(t_game *game);
 void			init_ray(t_game *game);
 void			init_keys(t_game *game);
 void			init_textures(t_game *game);
