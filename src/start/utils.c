@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:53:12 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 20:00:03 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/26 11:01:35 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_keys(t_game *game)
 
 void	init_textures(t_game *game)
 {
-	game->textures.window_image = NULL;
+	game->window_image.i = NULL;
 	game->textures.north = NULL;
 	game->textures.south = NULL;
 	game->textures.east = NULL;

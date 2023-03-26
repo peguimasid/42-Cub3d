@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:27:10 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 19:47:59 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/26 10:59:48 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_color
 
 typedef struct s_textures
 {
-	t_img	*window_image;
 	t_img	*north;
 	t_img	*south;
 	t_img	*east;
