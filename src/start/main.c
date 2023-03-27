@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:42:52 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/26 10:49:41 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/27 12:54:11 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
+	game->win = NULL;
 }
 
 void	init_map(t_game *game)
