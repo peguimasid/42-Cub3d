@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/27 18:23:07 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/27 18:40:55 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void			init_frame(t_game *game);
 
 // Parse Map
 void			parse_map(char *path, t_game *game);
+char			*get_next_line_trimmed(int fd);
 
 // Error
 int				throw_error(char *error);

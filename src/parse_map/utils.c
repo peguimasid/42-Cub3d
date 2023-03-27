@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:19:23 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/27 18:41:12 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/27 18:40:59 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	parse_map(char *path, t_game *game)
+char	*get_next_line_trimmed(int fd)
 {
-	int		fd;
+	char	*tmp;
 	char	*line;
 
-	(void)game;
-	fd = open(path, O_RDONLY);
-	line = get_next_line_trimmed(fd);
-	while (line)
-	{
-		printf("%s\n", line);
-		free(line);
-		line = get_next_line_trimmed(fd);
-	}
-	close(fd);
+	tmp = get_next_line(fd);
+	line = ft_strtrim(tmp, "\n");
+	free(tmp);
+	return (line);
 }
