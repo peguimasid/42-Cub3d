@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:53:12 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/27 12:48:29 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/27 13:23:25 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_textures(t_game *game)
 	game->textures.south = NULL;
 	game->textures.east = NULL;
 	game->textures.west = NULL;
-	game->textures.black = load_img_from_path("textures/black.xpm", game->mlx);
+	game->textures.black = load_img_from_path("textures/black.xpm", game);
 	if (!game->textures.black || !game->textures.black->i)
 		exit_app("Run cub3d from the root of the project", game);
 }
