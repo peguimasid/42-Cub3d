@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/27 12:46:44 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/27 12:47:24 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void			init_frame(t_game *game);
 int				throw_error(char *error);
 
 // Utils
-t_img			*load_image_from_path(char *path, t_game *game);
+t_img			*load_img_from_path(char *path, t_game *game);
 
 #endif

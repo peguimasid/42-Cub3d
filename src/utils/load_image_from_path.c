@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:41:26 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/27 12:46:36 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/27 12:49:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	has_xpm_extension(char *path)
 	return (1);
 }
 
-int	can_open_file(char *path)
+static int	can_open_file(char *path)
 {
 	int	fd;
 
@@ -31,7 +31,7 @@ int	can_open_file(char *path)
 	return (fd > 0);
 }
 
-t_img	*load_image_from_path(char *path, t_game *game)
+t_img	*load_img_from_path(char *path, t_game *game)
 {
 	t_img	*i;
 
@@ -39,7 +39,6 @@ t_img	*load_image_from_path(char *path, t_game *game)
 	i->i = NULL;
 	if (!path || !has_xpm_extension(path) || !can_open_file(path))
 		return (i);
-	close(fd);
 	i->i = mlx_xpm_file_to_image(game->mlx, path, &i->width, &i->height);
 	i->addr = mlx_get_data_addr(i->i, &i->bpp, &i->line_len, &i->endian);
 	return (i);
