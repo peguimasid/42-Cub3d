@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:41:26 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/27 12:49:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/27 13:01:25 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@ int	has_xpm_extension(char *path)
 	if (ft_strncmp(path + length - 4, ".xpm", 4) != 0)
 		return (0);
 	return (1);
-}
-
-static int	can_open_file(char *path)
-{
-	int	fd;
-
-	fd = open(path, O_RDONLY);
-	close(fd);
-	return (fd > 0);
 }
 
 t_img	*load_img_from_path(char *path, t_game *game)
