@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:12:19 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/28 18:02:03 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/28 18:02:54 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 void	handle_map_line(char *line, t_game *game)
 {
-	(void)game;
-	printf("map line = %s\n", line);
+	game->map.array = matrix_push(game->map.array, line);
 }

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:47:46 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/27 13:20:37 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/28 18:06:31 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	close_game(t_game *game)
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	free(game->mlx);
+	free_matrix(game->map.array);
 	exit(0);
 	return (0);
 }
