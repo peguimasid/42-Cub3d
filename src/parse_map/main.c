@@ -6,15 +6,27 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:19:23 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/27 19:14:30 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/28 16:09:40 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+void	handle_texture_line(char *line)
+{
+	printf("texture = %s\n", line);
+}
+
+void	handle_map_line(char *line)
+{
+	printf("map line = %s\n", line);
+}
+
 void	handle_line(char *line, int count)
 {
-	printf("line = %s || count = %d\n", line, count);
+	if (count < 6)
+		return (handle_texture_line(line));
+	return (handle_map_line(line));
 }
 
 void	parse_map(char *path, t_game *game)
