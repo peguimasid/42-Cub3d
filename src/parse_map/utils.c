@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:19:23 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/27 18:40:59 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/28 17:38:01 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,9 @@ char	*get_next_line_trimmed(int fd)
 	line = ft_strtrim(tmp, "\n");
 	free(tmp);
 	return (line);
+}
+
+int	is_map_line(int count)
+{
+	return (count > 6);
 }
