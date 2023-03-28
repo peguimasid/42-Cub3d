@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/28 18:19:47 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/28 18:28:46 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int				throw_error(char *error);
 // Utils
 t_img			*load_img_from_path(char *path, t_game *game);
 int				can_open_file(char *path);
+int				max(int a, int b);
 
 int				matrix_len(char **matrix);
 void			free_matrix(char **matrix);
