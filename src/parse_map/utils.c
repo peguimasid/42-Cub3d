@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:19:23 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/29 18:32:52 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/29 19:31:44 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ char	*get_texture_key(char *line, t_game *game)
 		exit_app("Exactly two positions in texture line", game);
 	}
 	result = ft_strdup(split[0]);
+	if (!is_valid_key(result) || is_duplicate_key(result, game))
+	{
+		free(result);
+		free_matrix(split);
+		exit_app("You send either invalid or duplicated keys", game);
+	}
 	free_matrix(split);
 	return (result);
 }
