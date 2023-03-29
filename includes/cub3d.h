@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/29 18:33:03 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/29 18:48:00 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void			handle_map_line(char *line, t_game *game);
 void			handle_texture_line(char *line, t_game *game);
 char			*get_texture_key(char *line, t_game *game);
 char			*get_texture_value(char *line, t_game *game);
+int				is_valid_key(char *key);
+int				is_duplicate_key(char *key, t_game *game);
 
 // Error
 int				throw_error(char *error);
