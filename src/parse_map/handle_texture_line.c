@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:12:19 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/30 16:47:49 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/30 17:33:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,24 @@
 
 void	load_texture_from_path(char *key, char *path, t_game *game)
 {
-	(void)game;
-	printf("texture >> %s = %s\n", key, path);
+	if (is_north(key))
+		game->textures.north = load_img_from_path(path, game);
+	if (is_south(key))
+		game->textures.south = load_img_from_path(path, game);
+	if (is_west(key))
+		game->textures.west = load_img_from_path(path, game);
+	if (is_east(key))
+		game->textures.east = load_img_from_path(path, game);
+	free(key);
+	free(path);
 }
 
 void	load_color_from_string(char *key, char *string, t_game *game)
 {
 	(void)game;
 	printf("color >> %s = %s\n", key, string);
+	free(key);
+	free(string);
 }
 
 void	handle_texture_line(char *line, t_game *game)
