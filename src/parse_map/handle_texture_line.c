@@ -6,11 +6,23 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:12:19 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/29 19:30:56 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/30 16:46:30 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	load_texture_from_path(char *key, char *path, t_game *game)
+{
+	(void)game;
+	printf("texture >> %s = %s\n", key, path);
+}
+
+void	load_color_from_string(char *key, char *string, t_game *game)
+{
+	(void)game;
+	printf("color >> %s = %s\n", key, string);
+}
 
 void	handle_texture_line(char *line, t_game *game)
 {
@@ -19,6 +31,8 @@ void	handle_texture_line(char *line, t_game *game)
 
 	key = get_texture_key(line, game);
 	value = get_texture_value(line, game);
-	(void)key;
-	(void)value;
+	if (is_cardinal_direction(key))
+		load_texture_from_path(key, value, game);
+	if (is_color_texture(key))
+		load_color_from_string(key, value, game);
 }
