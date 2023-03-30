@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/29 20:00:04 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/30 16:57:34 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ int				is_valid_key(char *key);
 int				is_duplicate_key(char *key, t_game *game);
 int				is_color_texture(char *key);
 int				is_cardinal_direction(char *key);
+int				is_north(char *key);
+int				is_south(char *key);
+int				is_west(char *key);
+int				is_east(char *key);
+int				is_floor(char *key);
+int				is_ceiling(char *key);
 
 // Error
 int				throw_error(char *error);
