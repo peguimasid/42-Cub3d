@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:15:22 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/31 14:54:35 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/31 15:20:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int	invalid_color(char *string, char **parts, t_game *game)
 
 int	rgb_to_int(int r, int g, int b)
 {
-	int	color;
-
-	color = (r << 16) | (g << 8) | b;
-	return (color);
+	return ((r << 16) | (g << 8) | b);
 }
 
 int	is_string_numeric(char *string)
