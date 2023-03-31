@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/30 16:57:34 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/31 14:34:23 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void			handle_texture_line(char *line, t_game *game);
 char			*get_next_line_trimmed(int fd);
 char			*get_texture_key(char *line, t_game *game);
 char			*get_texture_value(char *line, t_game *game);
+int				get_color_from_string(char *string, t_game *game);
 int				is_valid_key(char *key);
 int				is_duplicate_key(char *key, t_game *game);
 int				is_color_texture(char *key);

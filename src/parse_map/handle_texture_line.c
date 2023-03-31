@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:12:19 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/30 17:33:13 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/31 14:41:37 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	load_texture_from_path(char *key, char *path, t_game *game)
 
 void	load_color_from_string(char *key, char *string, t_game *game)
 {
-	(void)game;
-	printf("color >> %s = %s\n", key, string);
+	if (is_floor(key))
+		game->textures.floor = get_color_from_string(string, game);
+	if (is_ceiling(key))
+		game->textures.ceiling = get_color_from_string(string, game);
 	free(key);
 	free(string);
 }
