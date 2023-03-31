@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/31 20:17:12 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/31 20:18:12 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void			init_textures(t_game *game);
 void			init_frame(t_game *game);
 
 // Parse Map
-int				is_map_line(int count);
 void			parse_map(char *path, t_game *game);
 void			handle_map_line(char *line, t_game *game);
 void			handle_texture_line(char *line, t_game *game);
@@ -63,6 +62,8 @@ char			*get_next_line_trimmed(int fd);
 char			*get_texture_key(char *line, t_game *game);
 char			*get_texture_value(char *line, t_game *game);
 int				get_color_from_string(char *string, t_game *game);
+
+int				is_map_line(int count);
 int				is_valid_key(char *key);
 int				is_duplicate_key(char *key, t_game *game);
 int				is_color_texture(char *key);
