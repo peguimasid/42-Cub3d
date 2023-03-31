@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:15:22 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/31 14:42:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/31 14:54:35 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,43 @@ int	invalid_color(char *string, char **parts, t_game *game)
 	return (exit_app("Invalid color", game));
 }
 
-int	is_valid(char **parts)
+int	rgb_to_int(int r, int g, int b)
 {
+	int	color;
+
+	color = (r << 16) | (g << 8) | b;
+	return (color);
+}
+
+int	is_string_numeric(char *string)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen(string);
+	while (i < len)
+	{
+		if (!ft_isdigit(string[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	is_color_parts_valid(char **parts)
+{
+	int	i;
+
 	if (!parts || matrix_len(parts) != 3)
 		return (0);
-	print_matrix(parts);
-	printf("----\n");
+	i = 0;
+	while (i < matrix_len(parts))
+	{
+		if (!is_string_numeric(parts[i]))
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
@@ -34,17 +65,15 @@ int	get_color_from_string(char *string, t_game *game)
 	int		r;
 	int		g;
 	int		b;
-	int		color;
 
 	parts = ft_split(string, ',');
-	if (!is_valid(parts))
+	if (!is_color_parts_valid(parts))
 		return (invalid_color(string, parts, game));
 	r = ft_atoi(parts[0]);
 	g = ft_atoi(parts[1]);
 	b = ft_atoi(parts[2]);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (invalid_color(string, parts, game));
-	color = (r << 16) | (g << 8) | b;
 	free_matrix(parts);
-	return (color);
+	return (rgb_to_int(r, g, b));
 }
