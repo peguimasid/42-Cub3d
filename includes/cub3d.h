@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/31 14:34:23 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/31 20:17:12 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_game
 int				close_game(t_game *game);
 int				exit_app(char *message, t_game *game);
 
-int				handle_keydown(int key, t_game *game);
-int				handle_keyup(int key, t_game *game);
+int				handle_key_down(int key, t_game *game);
+int				handle_key_up(int key, t_game *game);
 
 // Validation
 int				send_valid_file(int argc, char **argv);
