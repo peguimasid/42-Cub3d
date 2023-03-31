@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:47:46 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/30 18:21:17 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/31 20:15:10 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ int	close_game(t_game *game)
 	free(game->mlx);
 	free_matrix(game->map.array);
 	exit(0);
+	return (0);
+}
+
+int	throw_error(char *error)
+{
+	printf("\033[0;31m");
+	printf("Error\n%s\n", error);
+	printf("\033[0m");
 	return (0);
 }
 
