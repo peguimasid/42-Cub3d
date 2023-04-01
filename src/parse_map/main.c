@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:19:23 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/31 20:36:39 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/31 20:46:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,13 @@ void	parse_map_file_and_set_textures(char *path, t_game *game)
 	close(fd);
 }
 
+void	normalize_map(t_game *game)
+{
+	(void)game;
+}
+
 void	parse_map(char *path, t_game *game)
 {
 	parse_map_file_and_set_textures(path, game);
+	normalize_map(game);
 }

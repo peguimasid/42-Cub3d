@@ -6,11 +6,23 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/28 16:53:02 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/31 20:39:39 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	print_map(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix && matrix[i])
+	{
+		printf("'%s'\n", matrix[i]);
+		i++;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -20,6 +32,7 @@ int	main(int argc, char **argv)
 		return (1);
 	init_cub(&game);
 	parse_map(argv[1], &game);
+	print_map(game.map.array);
 	// TODO: Remove this 'close_game' function from here
 	close_game(&game);
 }
