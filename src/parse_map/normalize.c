@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 21:39:32 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/01 20:02:19 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/01 20:10:28 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ char	*normalize_row(char *original_map_row, t_game *game)
 
 void	normalize_map(t_game *game)
 {
-	char	**result;
+	char	**normalized_map;
 	int		i;
 
-	result = malloc(sizeof(char *) * (game->map.height + 1));
+	normalized_map = malloc(sizeof(char *) * (game->map.height + 1));
 	i = 0;
 	while (i < game->map.height)
 	{
-		result[i] = normalize_row(game->map.array[i], game);
+		normalized_map[i] = normalize_row(game->map.array[i], game);
 		i++;
 	}
-	result[i] = NULL;
+	normalized_map[i] = NULL;
 	free_matrix(game->map.array);
-	game->map.array = result;
+	game->map.array = normalized_map;
 }
