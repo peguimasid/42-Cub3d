@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/31 20:18:12 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/03/31 21:40:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			init_frame(t_game *game);
 void			parse_map(char *path, t_game *game);
 void			handle_map_line(char *line, t_game *game);
 void			handle_texture_line(char *line, t_game *game);
+void			normalize_map(t_game *game);
 char			*get_next_line_trimmed(int fd);
 char			*get_texture_key(char *line, t_game *game);
 char			*get_texture_value(char *line, t_game *game);
