@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/31 21:40:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/02 11:57:55 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ int				is_west(char *key);
 int				is_east(char *key);
 int				is_floor(char *key);
 int				is_ceiling(char *key);
+
+// Validate Map
+void			validate_map(t_game *game);
 
 // Error
 int				throw_error(char *error);
