@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:53:12 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/29 18:51:47 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/02 12:03:53 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_textures(t_game *game)
 	game->textures.south = NULL;
 	game->textures.east = NULL;
 	game->textures.west = NULL;
+	game->textures.black = NULL;
 	game->textures.floor = -1;
 	game->textures.ceiling = -1;
 	game->textures.black = load_img_from_path("textures/black.xpm", game);
