@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:27:10 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/26 10:59:48 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/02 11:33:33 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,6 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }			t_img;
-
-typedef struct s_color
-{
-	long	r;
-	long	g;
-	long	b;
-	long	a;
-}			t_color;
 
 typedef struct s_textures
 {
