@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   handle_map_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 17:50:00 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 18:53:36 by gmasid           ###   ########.fr       */
+/*   Created: 2023/03/28 16:12:19 by gmasid            #+#    #+#             */
+/*   Updated: 2023/03/28 18:31:23 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	throw_error(char *error)
+void	handle_map_line(char *line, t_game *game)
 {
-	printf("\033[0;31m");
-	printf("Error\n%s\n", error);
-	printf("\033[0m");
-	return (0);
+	game->map.array = matrix_push(game->map.array, line);
+	game->map.width = max(game->map.width, ft_strlen(line));
+	game->map.height++;
 }

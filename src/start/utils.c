@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:53:12 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/16 20:00:03 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/02 12:03:53 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,17 @@ void	init_keys(t_game *game)
 
 void	init_textures(t_game *game)
 {
-	game->textures.window_image = NULL;
+	game->window_image.i = NULL;
 	game->textures.north = NULL;
 	game->textures.south = NULL;
 	game->textures.east = NULL;
 	game->textures.west = NULL;
-	// TODO: Create function to open image and assign to t_img struct
-	// game->textures.black = load_image(game->mlx, "textures/black.xpm");
+	game->textures.black = NULL;
+	game->textures.floor = -1;
+	game->textures.ceiling = -1;
+	game->textures.black = load_img_from_path("textures/black.xpm", game);
+	if (!game->textures.black || !game->textures.black->i)
+		exit_app("Run cub3d from the root of the project", game);
 }
 
 void	init_frame(t_game *game)

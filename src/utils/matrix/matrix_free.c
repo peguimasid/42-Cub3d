@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   matrix_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/02 11:57:29 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/05 13:46:02 by gmasid            #+#    #+#             */
+/*   Updated: 2023/03/28 16:55:46 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+void	free_matrix(char **matrix)
 {
-	t_game	game;
+	int	i;
 
-	if (!send_valid_file(argc, argv))
-		return (1);
-	init_cub(&game);
-	parse_map(argv[1], &game);
-	validate_map(&game);
-	// TODO: Remove this 'close_game' function from here
-	close_game(&game);
+	i = 0;
+	while (matrix && matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	if (matrix)
+		free(matrix);
 }

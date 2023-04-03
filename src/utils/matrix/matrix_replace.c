@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   matrix_replace.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/02 11:57:29 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/06 12:41:50 by gmasid            #+#    #+#             */
+/*   Updated: 2023/03/28 16:56:08 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+char	**matrix_replace(char **matrix, int i, char *new_value)
 {
-	t_game	game;
-
-	if (!send_valid_file(argc, argv))
-		return (1);
-	init_cub(&game);
-	parse_map(argv[1], &game);
-	validate_map(&game);
-	// TODO: Remove this 'close_game' function from here
-	close_game(&game);
+	if (!matrix || !matrix[i])
+		return (NULL);
+	free(matrix[i]);
+	matrix[i] = ft_strdup(new_value);
+	return (matrix);
 }
