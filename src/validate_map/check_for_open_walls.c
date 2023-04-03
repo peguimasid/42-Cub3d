@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_for_open_walls.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/02 11:56:04 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/03 19:23:33 by gmasid           ###   ########.fr       */
+/*   Created: 2023/04/03 19:22:45 by gmasid            #+#    #+#             */
+/*   Updated: 2023/04/03 19:23:46 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	validate_map(t_game *game)
+void	check_for_open_walls(t_game *game)
 {
-	check_invalid_char(game);
-	check_player_existence(game);
-	check_for_open_walls(game);
+	(void)game;
+	printf("OK\n");
 }
