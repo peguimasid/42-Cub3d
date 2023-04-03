@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contains_invalid_char.c                            :+:      :+:    :+:   */
+/*   check_invalid_char.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:55:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/03 19:11:58 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/03 19:15:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_invalid_char(t_game *game)
 		while (game->map.array[i][j])
 		{
 			if (!is_valid_cell(game->map.array[i][j]))
-				exit_app("You provide invalid char in map", game);
+				exit_app("Invalid char in map", game);
 			j++;
 		}
 		i++;
