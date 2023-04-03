@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_player_existance.c                          :+:      :+:    :+:   */
+/*   check_player_existance.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:55:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/03 19:11:30 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/03 19:16:22 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void	check_player_existence(t_game *game)
 		i++;
 	}
 	if (players_count != 1)
-		exit_app("Send exactly one player", game);
+		exit_app("Invalid number of players", game);
 }
