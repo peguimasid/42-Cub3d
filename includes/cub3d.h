@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/03 18:57:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/03 19:11:00 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int				is_ceiling(char *key);
 // Validate Map
 void			validate_map(t_game *game);
 
-int				contains_invalid_char(t_game *game);
-void			verify_player_existence(t_game *game);
+void			check_invalid_char(t_game *game);
+void			check_player_existence(t_game *game);
 void			set_player_props(t_game *game, int x, int y, char player_dir);
 
 int				is_player_cell(char map_cell);

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:55:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/03 18:56:17 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/03 19:11:30 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	set_player_props(t_game *game, int x, int y, char player_dir)
 	game->player.y_pos = y;
 }
 
-void	verify_player_existence(t_game *game)
+void	check_player_existence(t_game *game)
 {
-	int players_count;
-	int i;
-	int j;
+	int	players_count;
+	int	i;
+	int	j;
 
 	players_count = 0;
 	i = 0;
