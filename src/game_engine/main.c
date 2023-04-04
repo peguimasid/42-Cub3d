@@ -5,21 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/04 17:59:30 by gmasid           ###   ########.fr       */
+/*   Created: 2023/04/04 18:02:59 by gmasid            #+#    #+#             */
+/*   Updated: 2023/04/04 18:04:43 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+void	start_game(t_game *game)
 {
-	t_game	game;
-
-	if (!send_valid_file(argc, argv))
-		return (1);
-	init_cub(&game);
-	parse_map(argv[1], &game);
-	validate_map(&game);
-	start_game(&game);
+	(void)game;
+	printf("OK\n");
 }
