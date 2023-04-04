@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:47:46 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/31 20:15:10 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/04 18:41:23 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	close_game(t_game *game)
 	destroy_texture(game->textures.west, game);
 	destroy_texture(game->textures.east, game);
 	destroy_texture(game->textures.black, game);
+	destroy_texture(&game->window_image, game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	free(game->mlx);
