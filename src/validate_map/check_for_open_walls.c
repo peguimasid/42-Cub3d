@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 19:22:45 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/03 19:59:38 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/04 17:23:47 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_for_open_wall(char **map, int px, int py, t_game *game)
 	if (!is_valid_position(map, px, py))
 	{
 		free_matrix(map);
-		exit_app("Invalid map", game);
+		exit_app("Open wall found from player position.", game);
 	}
 	if (map[px][py] == '1')
 		return ;
