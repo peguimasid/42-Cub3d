@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/05 18:09:04 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/05 18:15:33 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int				game_loop(t_game *game);
 int				handle_key_down(int key, t_game *game);
 int				handle_key_up(int key, t_game *game);
 void			handle_player_move(t_game *game);
+void			render_scene(t_game *game);
 
 // Validation
 int				send_valid_file(int argc, char **argv);
