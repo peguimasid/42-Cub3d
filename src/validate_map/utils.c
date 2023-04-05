@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/02 11:56:04 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/03 19:23:33 by gmasid           ###   ########.fr       */
+/*   Created: 2023/04/03 18:55:37 by gmasid            #+#    #+#             */
+/*   Updated: 2023/04/03 18:57:22 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	validate_map(t_game *game)
+int	is_player_cell(char map_cell)
 {
-	check_invalid_char(game);
-	check_player_existence(game);
-	check_for_open_walls(game);
+	return (ft_strchr("NSEW", map_cell) != 0);
+}
+
+int	is_valid_cell(char map_cell)
+{
+	return (ft_strchr("NSEW 01", map_cell) != 0);
 }
