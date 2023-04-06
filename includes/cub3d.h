@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/05 18:15:33 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/06 14:05:39 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int				throw_error(char *error);
 t_img			*load_img_from_path(char *path, t_game *game);
 int				can_open_file(char *path);
 int				max(int a, int b);
+float			degree_to_radians(float degree);
 
 int				matrix_len(char **matrix);
 void			free_matrix(char **matrix);
