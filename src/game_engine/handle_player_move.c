@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:08:15 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/08 14:14:46 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/08 14:16:23 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	move_player(int key, t_game *game)
 
 void	handle_player_move(t_game *game)
 {
-	printf(">>> %f %f\n", game->player.x_pos, game->player.y_pos);
 	if (game->keys.is_arrow_left_pressed)
 		game->ray.angle -= 3;
 	if (game->keys.is_arrow_right_pressed)
