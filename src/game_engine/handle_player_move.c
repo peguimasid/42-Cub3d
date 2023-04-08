@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:08:15 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/08 13:29:36 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:32:11 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ float	get_angle(int key, t_game *game)
 	return (game->ray.angle);
 }
 
-void	move_player(int key, t_game *game, float ray_cos, float ray_sin)
+void	move_player(int key, t_game *game)
 {
 	float	angle;
+	float	ray_cos;
+	float	ray_sin;
 
 	angle = get_angle(key, game);
 	ray_cos = cos(degree_to_radians(angle)) * game->player.speed;
@@ -42,11 +44,11 @@ void	handle_player_move(t_game *game)
 	if (game->keys.is_arrow_right_pressed)
 		game->ray.angle += 3;
 	if (game->keys.is_w_pressed)
-		move_player(KEY_W, game, 0, 0);
+		move_player(KEY_W, game);
 	if (game->keys.is_a_pressed)
-		move_player(KEY_A, game, 0, 0);
+		move_player(KEY_A, game);
 	if (game->keys.is_s_pressed)
-		move_player(KEY_S, game, 0, 0);
+		move_player(KEY_S, game);
 	if (game->keys.is_d_pressed)
-		move_player(KEY_D, game, 0, 0);
+		move_player(KEY_D, game);
 }
