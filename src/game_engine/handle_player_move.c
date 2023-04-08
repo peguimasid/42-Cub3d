@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:08:15 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/08 13:32:11 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/08 14:14:46 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,23 @@ float	get_angle(int key, t_game *game)
 	return (game->ray.angle);
 }
 
+void	update_player_position(float ray_sin, float ray_cos, t_game *game)
+{
+	int	new_x;
+	int	new_y;
+	int	curr_x;
+	int	curr_y;
+
+	new_x = game->player.x_pos + 0.5 + (3 * ray_cos);
+	new_y = game->player.y_pos + 0.5 + (3 * ray_sin);
+	curr_x = game->player.x_pos + 0.5;
+	curr_y = game->player.y_pos + 0.5;
+	if (game->map.array[new_x][curr_y] != '1')
+		game->player.x_pos += ray_cos;
+	if (game->map.array[curr_x][new_y] != '1')
+		game->player.y_pos += ray_sin;
+}
+
 void	move_player(int key, t_game *game)
 {
 	float	angle;
@@ -32,8 +49,7 @@ void	move_player(int key, t_game *game)
 	angle = get_angle(key, game);
 	ray_cos = cos(degree_to_radians(angle)) * game->player.speed;
 	ray_sin = sin(degree_to_radians(angle)) * game->player.speed;
-	game->player.y_pos += ray_sin;
-	game->player.x_pos += ray_cos;
+	update_player_position(ray_sin, ray_cos, game);
 }
 
 void	handle_player_move(t_game *game)
