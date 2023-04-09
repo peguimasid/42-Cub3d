@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/09 12:40:48 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/09 12:46:54 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	is_wall(int x, int y, t_game *game)
 	return (game->map.array[x][y] == '1');
 }
 
-void	handle_pixel(int x, int y, int wall_height, t_game *game)
+void	render_wall_column_pixel(int x, int y, int wall_height, t_game *game)
 {
 	float	wall_start;
 	float	wall_end;
 
-	wall_start = (float)((WINDOW_HEIGHT / 2) - wall_height);
-	wall_end = (float)((WINDOW_HEIGHT / 2) + wall_height);
+	wall_start = (WINDOW_HEIGHT / 2) - wall_height;
+	wall_end = (WINDOW_HEIGHT / 2) + wall_height;
 	if (y < wall_start)
 		return (set_pixel_color(x, y, game->textures.ceiling, game));
 	if (y >= wall_end)
@@ -53,16 +53,16 @@ void	handle_pixel(int x, int y, int wall_height, t_game *game)
 	return (set_pixel_color(x, y, 0xFFFF00, game));
 }
 
-void	draw_wall_column(t_game *game, int x, float dis)
+void	render_wall_column(t_game *game, int x, float dis)
 {
 	int	wall_height;
 	int	y;
 
-	wall_height = (int)(WINDOW_HEIGHT / (1.5 * dis));
+	wall_height = WINDOW_HEIGHT / (1.5 * dis);
 	y = 0;
 	while (y < WINDOW_HEIGHT)
 	{
-		handle_pixel(x, y, wall_height, game);
+		render_wall_column_pixel(x, y, wall_height, game);
 		y++;
 	}
 }
@@ -101,7 +101,7 @@ void	render_scene(t_game *game)
 	while (ray_count < WINDOW_WIDTH)
 	{
 		distance = calculate_wall_distance(game, ray_angle);
-		draw_wall_column(game, ray_count, distance);
+		render_wall_column(game, ray_count, distance);
 		ray_angle += game->ray.increment_angle;
 		ray_count++;
 	}
