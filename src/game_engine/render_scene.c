@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/08 22:44:25 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/09 12:40:48 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	set_pixel_color(int x, int y, int color, t_game *game)
 
 int	is_within_ray_limit(int x, int y, t_game *game)
 {
-	float	dx;
-	float	dy;
+	float	delta_x;
+	float	delta_y;
 	float	distance;
 
-	dx = x - game->player.x_pos - 0.5;
-	dy = y - game->player.y_pos - 0.5;
-	distance = sqrt(powf(dx, 2.) + powf(dy, 2.));
+	delta_x = x - game->player.x_pos - 0.5;
+	delta_y = y - game->player.y_pos - 0.5;
+	distance = sqrt(powf(delta_x, 2.) + powf(delta_y, 2.));
 	return (distance < game->ray.limit);
 }
 
@@ -39,25 +39,31 @@ int	is_wall(int x, int y, t_game *game)
 	return (game->map.array[x][y] == '1');
 }
 
-void	draw_wall_column(t_game *game, int x, float dis)
+void	handle_pixel(int x, int y, int wall_height, t_game *game)
 {
-	int		wall_height;
 	float	wall_start;
 	float	wall_end;
-	int		y;
 
-	wall_height = (int)(WINDOW_HEIGHT / (1.5 * dis));
 	wall_start = (float)((WINDOW_HEIGHT / 2) - wall_height);
 	wall_end = (float)((WINDOW_HEIGHT / 2) + wall_height);
-	y = -1;
-	while (++y < WINDOW_HEIGHT)
+	if (y < wall_start)
+		return (set_pixel_color(x, y, game->textures.ceiling, game));
+	if (y >= wall_end)
+		return (set_pixel_color(x, y, game->textures.floor, game));
+	return (set_pixel_color(x, y, 0xFFFF00, game));
+}
+
+void	draw_wall_column(t_game *game, int x, float dis)
+{
+	int	wall_height;
+	int	y;
+
+	wall_height = (int)(WINDOW_HEIGHT / (1.5 * dis));
+	y = 0;
+	while (y < WINDOW_HEIGHT)
 	{
-		if (y < wall_start)
-			set_pixel_color(x, y, game->textures.ceiling, game);
-		else if (y >= wall_end)
-			set_pixel_color(x, y, game->textures.floor, game);
-		else
-			set_pixel_color(x, y, 0xFFFF00, game);
+		handle_pixel(x, y, wall_height, game);
+		y++;
 	}
 }
 
@@ -66,8 +72,8 @@ float	calculate_wall_distance(t_game *game, float ray_angle)
 	float	distance;
 	float	x;
 	float	y;
-	float	x_diff;
-	float	y_diff;
+	float	delta_x;
+	float	delta_y;
 
 	game->ray.cos = cos(degree_to_radians(ray_angle)) / game->ray.precision;
 	game->ray.sin = sin(degree_to_radians(ray_angle)) / game->ray.precision;
@@ -78,9 +84,9 @@ float	calculate_wall_distance(t_game *game, float ray_angle)
 		x += game->ray.cos;
 		y += game->ray.sin;
 	}
-	x_diff = x - game->player.x_pos - 0.5;
-	y_diff = y - game->player.y_pos - 0.5;
-	distance = sqrt(powf(x_diff, 2.) + powf(y_diff, 2.));
+	delta_x = x - game->player.x_pos - 0.5;
+	delta_y = y - game->player.y_pos - 0.5;
+	distance = sqrt(powf(delta_x, 2.) + powf(delta_y, 2.));
 	return (distance * cos(degree_to_radians(ray_angle - game->ray.angle)));
 }
 
