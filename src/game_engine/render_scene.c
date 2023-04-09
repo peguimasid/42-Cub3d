@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/08 22:41:29 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/08 22:44:25 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,6 @@ void	set_pixel_color(int x, int y, int color, t_game *game)
 	img = &game->window_image;
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
-}
-
-void	cub_draw(t_game *game, int ray_count, float dis)
-{
-	int		wall_height;
-	float	wall_start;
-	float	wall_end;
-	int		i;
-
-	wall_height = (int)(WINDOW_HEIGHT / (1.5 * dis));
-	wall_start = (float)((WINDOW_HEIGHT / 2) - wall_height);
-	wall_end = (float)((WINDOW_HEIGHT / 2) + wall_height);
-	i = -1;
-	while (++i < WINDOW_HEIGHT)
-	{
-		if (i < wall_start)
-			set_pixel_color(ray_count, i, game->textures.ceiling, game);
-		else if (i >= wall_end)
-			set_pixel_color(ray_count, i, game->textures.floor, game);
-		else
-			set_pixel_color(ray_count, i, 0xFFFF00, game);
-	}
 }
 
 int	is_within_ray_limit(int x, int y, t_game *game)
@@ -59,6 +37,28 @@ int	is_within_ray_limit(int x, int y, t_game *game)
 int	is_wall(int x, int y, t_game *game)
 {
 	return (game->map.array[x][y] == '1');
+}
+
+void	draw_wall_column(t_game *game, int x, float dis)
+{
+	int		wall_height;
+	float	wall_start;
+	float	wall_end;
+	int		y;
+
+	wall_height = (int)(WINDOW_HEIGHT / (1.5 * dis));
+	wall_start = (float)((WINDOW_HEIGHT / 2) - wall_height);
+	wall_end = (float)((WINDOW_HEIGHT / 2) + wall_height);
+	y = -1;
+	while (++y < WINDOW_HEIGHT)
+	{
+		if (y < wall_start)
+			set_pixel_color(x, y, game->textures.ceiling, game);
+		else if (y >= wall_end)
+			set_pixel_color(x, y, game->textures.floor, game);
+		else
+			set_pixel_color(x, y, 0xFFFF00, game);
+	}
 }
 
 float	calculate_wall_distance(t_game *game, float ray_angle)
@@ -95,7 +95,7 @@ void	render_scene(t_game *game)
 	while (ray_count < WINDOW_WIDTH)
 	{
 		distance = calculate_wall_distance(game, ray_angle);
-		cub_draw(game, ray_count, distance);
+		draw_wall_column(game, ray_count, distance);
 		ray_angle += game->ray.increment_angle;
 		ray_count++;
 	}
