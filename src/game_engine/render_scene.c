@@ -6,21 +6,23 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/08 21:51:02 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/08 22:24:58 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+void	set_pixel_color(int x, int y, int color, t_game *game)
 {
 	char	*dst;
+	t_img	*img;
 
-	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
+	img = &game->window_image;
+	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	cub_draw(t_game *g, int ray_count, float dis)
+void	cub_draw(t_game *game, int ray_count, float dis)
 {
 	int		wall_height;
 	float	ds;
@@ -32,18 +34,34 @@ void	cub_draw(t_game *g, int ray_count, float dis)
 	while (++j < WINDOW_HEIGHT)
 	{
 		if (j < ds)
-			my_mlx_pixel_put(&g->window_image, ray_count, j,
-					g->textures.ceiling);
+			set_pixel_color(ray_count, j, game->textures.ceiling, game);
 		else if (j >= (WINDOW_HEIGHT / 2) + wall_height)
-			my_mlx_pixel_put(&g->window_image, ray_count, j, g->textures.floor);
+			set_pixel_color(ray_count, j, game->textures.floor, game);
 		else
-			my_mlx_pixel_put(&g->window_image, ray_count, j, 0xFFFF00);
+			set_pixel_color(ray_count, j, 0xFFFF00, game);
 	}
+}
+
+int	is_within_ray_limit(int x, int y, t_game *game)
+{
+	float	dx;
+	float	dy;
+	float	distance;
+
+	dx = x - game->player.x_pos - 0.5;
+	dy = y - game->player.y_pos - 0.5;
+	distance = sqrt(powf(dx, 2.) + powf(dy, 2.));
+	return (distance < game->ray.limit);
+}
+
+int	is_wall(int x, int y, t_game *game)
+{
+	return (game->map.array[x][y] == '1');
 }
 
 float	distance_to_wall(t_game *game, float ray_angle)
 {
-	float	d;
+	float	distance;
 	float	x;
 	float	y;
 
@@ -51,16 +69,14 @@ float	distance_to_wall(t_game *game, float ray_angle)
 	game->ray.sin = sin(degree_to_radians(ray_angle)) / game->ray.precision;
 	x = game->player.x_pos + 0.5;
 	y = game->player.y_pos + 0.5;
-	while (game->map.array[(int)x][(int)y] != '1' &&
-			sqrt(powf(x - game->player.x_pos - 0.5, 2.) +
-				powf(y - game->player.y_pos - 0.5, 2.)) < game->ray.limit)
+	while (!is_wall(x, y, game) && is_within_ray_limit(x, y, game))
 	{
 		x += game->ray.cos;
 		y += game->ray.sin;
 	}
-	d = sqrt(powf(x - game->player.x_pos - 0.5, 2.) + powf(y
+	distance = sqrt(powf(x - game->player.x_pos - 0.5, 2.) + powf(y
 				- game->player.y_pos - 0.5, 2.));
-	return (d * cos(degree_to_radians(ray_angle - game->ray.angle)));
+	return (distance * cos(degree_to_radians(ray_angle - game->ray.angle)));
 }
 
 void	render_scene(t_game *game)
