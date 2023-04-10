@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/03 19:23:27 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/09 15:54:00 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,17 @@ typedef struct s_game
 int				close_game(t_game *game);
 int				exit_app(char *message, t_game *game);
 
+// Game Engine
+void			start_game(t_game *game);
+int				game_loop(t_game *game);
 int				handle_key_down(int key, t_game *game);
 int				handle_key_up(int key, t_game *game);
+void			handle_player_move(t_game *game);
+void			render_scene(t_game *game);
+
+void			set_pixel_color(int x, int y, int color, t_game *game);
+int				is_within_ray_limit(int x, int y, t_game *game);
+int				is_wall(int x, int y, t_game *game);
 
 // Validation
 int				send_valid_file(int argc, char **argv);
@@ -94,6 +103,7 @@ int				throw_error(char *error);
 t_img			*load_img_from_path(char *path, t_game *game);
 int				can_open_file(char *path);
 int				max(int a, int b);
+float			degree_to_radians(float degree);
 
 int				matrix_len(char **matrix);
 void			free_matrix(char **matrix);

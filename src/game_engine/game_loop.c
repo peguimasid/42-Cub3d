@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 18:25:36 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/04 17:59:30 by gmasid           ###   ########.fr       */
+/*   Created: 2023/04/04 18:14:41 by gmasid            #+#    #+#             */
+/*   Updated: 2023/04/05 18:11:40 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+int	game_loop(t_game *game)
 {
-	t_game	game;
-
-	if (!send_valid_file(argc, argv))
-		return (1);
-	init_cub(&game);
-	parse_map(argv[1], &game);
-	validate_map(&game);
-	start_game(&game);
+	if (game->frame.count++ % game->frame.rate != 0)
+		return (0);
+	handle_player_move(game);
+	render_scene(game);
+	return (1);
 }
