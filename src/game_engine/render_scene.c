@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/09 15:53:53 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/14 15:21:15 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	render_wall_column_pixel(int x, int y, int wall_height, t_game *game)
 		return (set_pixel_color(x, y, game->textures.ceiling, game));
 	if (y >= wall_end)
 		return (set_pixel_color(x, y, game->textures.floor, game));
-	return (set_pixel_color(x, y, 0xFFFF00, game));
+	return (handle_texture(x, y, wall_height, game));
 }
 
 void	render_wall_column(t_game *game, int x, float dis)
