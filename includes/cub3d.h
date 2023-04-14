@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/09 15:54:00 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/14 15:12:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int				handle_key_up(int key, t_game *game);
 void			handle_player_move(t_game *game);
 void			render_scene(t_game *game);
 
+unsigned int	get_texture_pixel_color(int x, int y, t_img *img);
 void			set_pixel_color(int x, int y, int color, t_game *game);
 int				is_within_ray_limit(int x, int y, t_game *game);
 int				is_wall(int x, int y, t_game *game);

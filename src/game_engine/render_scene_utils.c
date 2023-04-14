@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:06 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/09 15:54:10 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/14 15:11:22 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ void	set_pixel_color(int x, int y, int color, t_game *game)
 	img = &game->window_image;
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
+}
+
+unsigned int	get_texture_pixel_color(int x, int y, t_img *img)
+{
+	char	*result;
+
+	result = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	return (*(unsigned int *)result);
 }
 
 int	is_within_ray_limit(int x, int y, t_game *game)
