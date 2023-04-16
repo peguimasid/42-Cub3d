@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 16:21:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 17:09:09 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ unsigned int	get_texture_pixel_color(int x, int y, t_img *img);
 void			set_pixel_color(int x, int y, int color, t_game *game);
 int				is_within_ray_limit(int x, int y, t_game *game);
 int				is_wall(int x, int y, t_game *game);
+int				has_ray_reached_limit(t_game *game);
 
 // Validation
 int				send_valid_file(int argc, char **argv);

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 16:21:48 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 17:09:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ void	render_wall_column(t_game *game, int x, float dis)
 		y++;
 	}
 	handle_texture(x, wall_height, game);
-}
-
-int	has_ray_reached_limit(t_game *game)
-{
-	if (!is_within_ray_limit(game->ray.x_pos, game->ray.y_pos, game))
-		return (1);
-	return (is_wall(game->ray.x_pos, game->ray.y_pos, game));
 }
 
 float	calculate_wall_distance(t_game *game, float ray_angle)

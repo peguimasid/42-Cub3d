@@ -6,13 +6,13 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:15:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 17:04:24 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 17:06:37 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	get_texture_color(t_game *game, t_img *i, int texture_y)
+int	get_texture_color(t_img *texture, int texture_y, t_game *game)
 {
 	float	x;
 	float	y;
@@ -22,8 +22,8 @@ int	get_texture_color(t_game *game, t_img *i, int texture_y)
 	y = game->ray.y_pos;
 	if (game->map.array[(int)x][(int)y] != '1')
 		return (0x00000000);
-	texture_x = (int)(i->width * (x + y)) % i->width;
-	return (get_texture_pixel_color(texture_x, texture_y, i));
+	texture_x = (int)(texture->width * (x + y)) % texture->width;
+	return (get_texture_pixel_color(texture_x, texture_y, texture));
 }
 
 void	handle_texture(int ray_count, int wall_height, t_game *game)
@@ -32,18 +32,18 @@ void	handle_texture(int ray_count, int wall_height, t_game *game)
 	float	wall_top;
 	float	current_y;
 	float	current_y_end;
-	int		tex_y;
+	int		y;
 	int		color;
-	t_img	*i;
+	t_img	*texture;
 
-	i = game->textures.east;
-	delta_y = ((float)wall_height * 2) / (float)i->height;
+	texture = game->textures.east;
+	delta_y = ((float)wall_height * 2) / (float)texture->height;
 	wall_top = ((float)WINDOW_HEIGHT / 2) - (float)wall_height;
 	current_y = wall_top;
-	tex_y = 0;
-	while (tex_y < i->height)
+	y = 0;
+	while (y < texture->height)
 	{
-		color = get_texture_color(game, i, tex_y);
+		color = get_texture_color(texture, y, game);
 		current_y_end = current_y + delta_y;
 		while (current_y < current_y_end)
 		{
@@ -52,6 +52,6 @@ void	handle_texture(int ray_count, int wall_height, t_game *game)
 			current_y++;
 		}
 		current_y = current_y_end;
-		tex_y++;
+		y++;
 	}
 }
