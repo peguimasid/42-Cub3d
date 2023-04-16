@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 14:12:00 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 16:19:00 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ void	render_wall_column(t_game *game, int x, float dis)
 	handle_texture(x, wall_height, game);
 }
 
+int	has_ray_reached_limit(t_game *game)
+{
+	if (!is_within_ray_limit(game->x, game->y, game))
+		return (1);
+	return (is_wall(game->x, game->y, game));
+}
+
 float	calculate_wall_distance(t_game *game, float ray_angle)
 {
 	float	distance;
@@ -50,8 +57,7 @@ float	calculate_wall_distance(t_game *game, float ray_angle)
 	game->ray.sin = sin(degree_to_radians(ray_angle)) / game->ray.precision;
 	game->x = game->player.x_pos + 0.5;
 	game->y = game->player.y_pos + 0.5;
-	while (!is_wall(game->x, game->y, game) && is_within_ray_limit(game->x,
-			game->y, game))
+	while (!has_ray_reached_limit(game))
 	{
 		game->x += game->ray.cos;
 		game->y += game->ray.sin;
