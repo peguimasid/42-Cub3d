@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 12:53:47 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 14:12:00 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	render_wall_column(t_game *game, int x, float dis)
 	int	wall_height;
 	int	y;
 
-	wall_height = WINDOW_HEIGHT / (1.5 * dis);
+	wall_height = min(WINDOW_HEIGHT / (1.5 * dis), WINDOW_HEIGHT);
 	y = 0;
 	while (y < WINDOW_HEIGHT)
 	{
