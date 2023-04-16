@@ -6,13 +6,13 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:15:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 16:39:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 17:02:57 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	get_tex_color(t_game *game, t_img *i, int texture_y)
+int	get_texture_color(t_game *game, t_img *i, int texture_y)
 {
 	float	x;
 	float	y;
@@ -45,7 +45,7 @@ void	handle_texture(int ray_count, int wall_height, t_game *game)
 	tex_y = 0;
 	while (tex_y < i->height)
 	{
-		color = get_tex_color(game, i, tex_y);
+		color = get_texture_color(game, i, tex_y);
 		current_y_end = current_y + delta_y;
 		while (current_y < current_y_end)
 		{
