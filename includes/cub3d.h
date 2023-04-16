@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 14:12:35 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 16:21:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	float		x;
-	float		y;
 	t_img		window_image;
 	t_map		map;
 	t_ray		ray;

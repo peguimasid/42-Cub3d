@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 16:19:00 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 16:21:48 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	render_wall_column(t_game *game, int x, float dis)
 
 int	has_ray_reached_limit(t_game *game)
 {
-	if (!is_within_ray_limit(game->x, game->y, game))
+	if (!is_within_ray_limit(game->ray.x_pos, game->ray.y_pos, game))
 		return (1);
-	return (is_wall(game->x, game->y, game));
+	return (is_wall(game->ray.x_pos, game->ray.y_pos, game));
 }
 
 float	calculate_wall_distance(t_game *game, float ray_angle)
@@ -55,15 +55,15 @@ float	calculate_wall_distance(t_game *game, float ray_angle)
 
 	game->ray.cos = cos(degree_to_radians(ray_angle)) / game->ray.precision;
 	game->ray.sin = sin(degree_to_radians(ray_angle)) / game->ray.precision;
-	game->x = game->player.x_pos + 0.5;
-	game->y = game->player.y_pos + 0.5;
+	game->ray.x_pos = game->player.x_pos + 0.5;
+	game->ray.y_pos = game->player.y_pos + 0.5;
 	while (!has_ray_reached_limit(game))
 	{
-		game->x += game->ray.cos;
-		game->y += game->ray.sin;
+		game->ray.x_pos += game->ray.cos;
+		game->ray.y_pos += game->ray.sin;
 	}
-	delta_x = game->x - game->player.x_pos - 0.5;
-	delta_y = game->y - game->player.y_pos - 0.5;
+	delta_x = game->ray.x_pos - game->player.x_pos - 0.5;
+	delta_y = game->ray.y_pos - game->player.y_pos - 0.5;
 	distance = sqrt(powf(delta_x, 2.) + powf(delta_y, 2.));
 	return (distance * cos(degree_to_radians(ray_angle - game->ray.angle)));
 }

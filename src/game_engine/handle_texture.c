@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:15:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 12:57:15 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 16:26:53 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	get_tex_color(t_game *g, t_img *i, int z)
 {
-	if (g->map.array[(int)g->x][(int)g->y] != '1')
+	if (g->map.array[(int)g->ray.x_pos][(int)g->ray.y_pos] != '1')
 		return (0x00000000);
-	return (get_texture_pixel_color((int)(i->width * (g->x + g->y)) % i->width,
+	return (get_texture_pixel_color((int)(i->width * (g->ray.x_pos
+					+ g->ray.y_pos)) % i->width,
 									z,
 									i));
 }
