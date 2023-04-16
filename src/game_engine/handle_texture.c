@@ -6,20 +6,26 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:15:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 16:26:53 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 16:39:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	get_tex_color(t_game *g, t_img *i, int z)
+int	get_tex_color(t_game *game, t_img *i, int texture_y)
 {
-	if (g->map.array[(int)g->ray.x_pos][(int)g->ray.y_pos] != '1')
+	float	x;
+	float	y;
+	int		texture_x;
+
+	x = game->ray.x_pos;
+	y = game->ray.y_pos;
+	(void)x;
+	(void)y;
+	if (game->map.array[(int)x][(int)y] != '1')
 		return (0x00000000);
-	return (get_texture_pixel_color((int)(i->width * (g->ray.x_pos
-					+ g->ray.y_pos)) % i->width,
-									z,
-									i));
+	texture_x = (int)(i->width * (x + y)) % i->width;
+	return (get_texture_pixel_color(texture_x, texture_y, i));
 }
 
 void	handle_texture(int ray_count, int wall_height, t_game *game)
@@ -32,7 +38,7 @@ void	handle_texture(int ray_count, int wall_height, t_game *game)
 	int		color;
 	t_img	*i;
 
-	i = game->textures.north;
+	i = game->textures.east;
 	delta_y = ((float)wall_height * 2) / (float)i->height;
 	wall_top = ((float)WINDOW_HEIGHT / 2) - (float)wall_height;
 	current_y = wall_top;
