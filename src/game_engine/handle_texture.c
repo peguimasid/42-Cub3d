@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:15:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 17:02:57 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 17:04:24 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	get_texture_color(t_game *game, t_img *i, int texture_y)
 
 	x = game->ray.x_pos;
 	y = game->ray.y_pos;
-	(void)x;
-	(void)y;
 	if (game->map.array[(int)x][(int)y] != '1')
 		return (0x00000000);
 	texture_x = (int)(i->width * (x + y)) % i->width;
