@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/14 15:21:15 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 12:53:47 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	render_wall_column_pixel(int x, int y, int wall_height, t_game *game)
 		return (set_pixel_color(x, y, game->textures.ceiling, game));
 	if (y >= wall_end)
 		return (set_pixel_color(x, y, game->textures.floor, game));
-	return (handle_texture(x, y, wall_height, game));
 }
 
 void	render_wall_column(t_game *game, int x, float dis)
@@ -38,27 +37,27 @@ void	render_wall_column(t_game *game, int x, float dis)
 		render_wall_column_pixel(x, y, wall_height, game);
 		y++;
 	}
+	handle_texture(x, wall_height, game);
 }
 
 float	calculate_wall_distance(t_game *game, float ray_angle)
 {
 	float	distance;
-	float	x;
-	float	y;
 	float	delta_x;
 	float	delta_y;
 
 	game->ray.cos = cos(degree_to_radians(ray_angle)) / game->ray.precision;
 	game->ray.sin = sin(degree_to_radians(ray_angle)) / game->ray.precision;
-	x = game->player.x_pos + 0.5;
-	y = game->player.y_pos + 0.5;
-	while (!is_wall(x, y, game) && is_within_ray_limit(x, y, game))
+	game->x = game->player.x_pos + 0.5;
+	game->y = game->player.y_pos + 0.5;
+	while (!is_wall(game->x, game->y, game) && is_within_ray_limit(game->x,
+			game->y, game))
 	{
-		x += game->ray.cos;
-		y += game->ray.sin;
+		game->x += game->ray.cos;
+		game->y += game->ray.sin;
 	}
-	delta_x = x - game->player.x_pos - 0.5;
-	delta_y = y - game->player.y_pos - 0.5;
+	delta_x = game->x - game->player.x_pos - 0.5;
+	delta_y = game->y - game->player.y_pos - 0.5;
 	distance = sqrt(powf(delta_x, 2.) + powf(delta_y, 2.));
 	return (distance * cos(degree_to_radians(ray_angle - game->ray.angle)));
 }

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:21 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/14 15:21:35 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/16 12:53:25 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	float		x;
+	float		y;
 	t_img		window_image;
 	t_map		map;
 	t_ray		ray;
@@ -48,7 +50,7 @@ int				handle_key_down(int key, t_game *game);
 int				handle_key_up(int key, t_game *game);
 void			handle_player_move(t_game *game);
 void			render_scene(t_game *game);
-void			handle_texture(int x, int y, int wall_height, t_game *game);
+void			handle_texture(int ray_count, int wall_height, t_game *game);
 
 unsigned int	get_texture_pixel_color(int x, int y, t_img *img);
 void			set_pixel_color(int x, int y, int color, t_game *game);
