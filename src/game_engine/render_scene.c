@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 13:43:53 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/17 19:19:29 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	render_wall_column_pixel(int x, int y, int wall_height, t_game *game)
 		return (set_pixel_color(x, y, game->textures.ceiling, game));
 	if (y >= wall_end)
 		return (set_pixel_color(x, y, game->textures.floor, game));
-	return (set_pixel_color(x, y, 0xFFFF00, game));
 }
 
 void	render_wall_column(t_game *game, int x, float dis)
@@ -38,27 +37,26 @@ void	render_wall_column(t_game *game, int x, float dis)
 		render_wall_column_pixel(x, y, wall_height, game);
 		y++;
 	}
+	handle_texture(x, wall_height, game);
 }
 
 float	calculate_wall_distance(t_game *game, float ray_angle)
 {
 	float	distance;
-	float	x;
-	float	y;
 	float	delta_x;
 	float	delta_y;
 
 	game->ray.cos = cos(degree_to_radians(ray_angle)) / game->ray.precision;
 	game->ray.sin = sin(degree_to_radians(ray_angle)) / game->ray.precision;
-	x = game->player.x_pos + 0.5;
-	y = game->player.y_pos + 0.5;
-	while (!is_wall(x, y, game) && is_within_ray_limit(x, y, game))
+	game->ray.x_pos = game->player.x_pos + 0.5;
+	game->ray.y_pos = game->player.y_pos + 0.5;
+	while (!has_ray_reached_limit(game))
 	{
-		x += game->ray.cos;
-		y += game->ray.sin;
+		game->ray.x_pos += game->ray.cos;
+		game->ray.y_pos += game->ray.sin;
 	}
-	delta_x = x - game->player.x_pos - 0.5;
-	delta_y = y - game->player.y_pos - 0.5;
+	delta_x = game->ray.x_pos - game->player.x_pos - 0.5;
+	delta_y = game->ray.y_pos - game->player.y_pos - 0.5;
 	distance = sqrt(powf(delta_x, 2.) + powf(delta_y, 2.));
 	return (distance * cos(degree_to_radians(ray_angle - game->ray.angle)));
 }
@@ -70,13 +68,13 @@ void	render_scene(t_game *game)
 	float	distance;
 
 	ray_angle = game->ray.angle - game->ray.hfov;
-	ray_count = 0;
-	while (ray_count < WINDOW_WIDTH)
+	ray_count = WINDOW_WIDTH - 1;
+	while (ray_count >= 0)
 	{
 		distance = calculate_wall_distance(game, ray_angle);
 		render_wall_column(game, ray_count, distance);
 		ray_angle += game->ray.increment_angle;
-		ray_count++;
+		ray_count--;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->window_image.i, 0, 0);
 }

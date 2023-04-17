@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 18:02:59 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/04 19:21:43 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/17 18:50:46 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	initialize_window(t_game *game)
 void	initialize_ray(t_game *game)
 {
 	if (game->player.dir == 'N')
-		game->ray.angle = 270;
-	if (game->player.dir == 'W')
 		game->ray.angle = 180;
-	if (game->player.dir == 'S')
+	if (game->player.dir == 'W')
 		game->ray.angle = 90;
-	if (game->player.dir == 'E')
+	if (game->player.dir == 'S')
 		game->ray.angle = 0;
+	if (game->player.dir == 'E')
+		game->ray.angle = 270;
 }
 
 void	start_game(t_game *game)
