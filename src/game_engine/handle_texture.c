@@ -6,11 +6,29 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:15:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 17:06:37 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/17 18:40:32 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+t_img	*get_wall_texture(t_game *game)
+{
+	float	cos;
+	float	sin;
+
+	cos = fabs(game->ray.cos);
+	sin = fabs(game->ray.sin);
+	if (!is_wall(game->ray.x_pos, game->ray.y_pos - sin, game))
+		return (game->textures.north);
+	if (!is_wall(game->ray.x_pos, game->ray.y_pos + sin, game))
+		return (game->textures.south);
+	if (!is_wall(game->ray.x_pos + cos, game->ray.y_pos, game))
+		return (game->textures.east);
+	if (!is_wall(game->ray.x_pos - cos, game->ray.y_pos, game))
+		return (game->textures.west);
+	return (game->textures.black);
+}
 
 int	get_texture_color(t_img *texture, int texture_y, t_game *game)
 {
@@ -36,7 +54,7 @@ void	handle_texture(int ray_count, int wall_height, t_game *game)
 	int		color;
 	t_img	*texture;
 
-	texture = game->textures.east;
+	texture = get_wall_texture(game);
 	delta_y = ((float)wall_height * 2) / (float)texture->height;
 	wall_top = ((float)WINDOW_HEIGHT / 2) - (float)wall_height;
 	current_y = wall_top;
