@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:11:07 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 17:09:13 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/17 19:19:29 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void	render_scene(t_game *game)
 	float	distance;
 
 	ray_angle = game->ray.angle - game->ray.hfov;
-	ray_count = 0;
-	while (ray_count < WINDOW_WIDTH)
+	ray_count = WINDOW_WIDTH - 1;
+	while (ray_count >= 0)
 	{
 		distance = calculate_wall_distance(game, ray_angle);
 		render_wall_column(game, ray_count, distance);
 		ray_angle += game->ray.increment_angle;
-		ray_count++;
+		ray_count--;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->window_image.i, 0, 0);
 }

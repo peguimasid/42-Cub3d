@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:15:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/17 19:05:47 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/17 19:18:49 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_img	*get_wall_texture(t_game *game)
 	cos = fabs(game->ray.cos);
 	sin = fabs(game->ray.sin);
 	if (!is_wall(game->ray.x_pos, game->ray.y_pos - sin, game))
-		return (game->textures.west);
-	if (!is_wall(game->ray.x_pos, game->ray.y_pos + sin, game))
 		return (game->textures.east);
+	if (!is_wall(game->ray.x_pos, game->ray.y_pos + sin, game))
+		return (game->textures.west);
 	if (!is_wall(game->ray.x_pos + cos, game->ray.y_pos, game))
 		return (game->textures.north);
 	if (!is_wall(game->ray.x_pos - cos, game->ray.y_pos, game))
