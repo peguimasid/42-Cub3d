@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:15:22 by gmasid            #+#    #+#             */
-/*   Updated: 2023/03/31 15:20:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:15:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ int	is_string_numeric(char *string)
 	return (1);
 }
 
-int	is_color_parts_valid(char **parts)
+int	is_color_parts_valid(char **parts, char *string)
 {
 	int	i;
 
+	if (count_char_in_string(string, ',') != 2)
+		return (0);
 	if (!parts || matrix_len(parts) != 3)
 		return (0);
 	i = 0;
@@ -64,7 +66,7 @@ int	get_color_from_string(char *string, t_game *game)
 	int		b;
 
 	parts = ft_split(string, ',');
-	if (!is_color_parts_valid(parts))
+	if (!is_color_parts_valid(parts, string))
 		return (invalid_color(string, parts, game));
 	r = ft_atoi(parts[0]);
 	g = ft_atoi(parts[1]);
