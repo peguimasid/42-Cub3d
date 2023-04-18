@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:15:37 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/17 19:18:49 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/18 11:18:35 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,32 +44,33 @@ int	get_texture_color(t_img *texture, int texture_y, t_game *game)
 	return (get_texture_pixel_color(texture_x, texture_y, texture));
 }
 
+float	get_wall_start(int wall_height)
+{
+	return (WINDOW_HEIGHT / 2 - wall_height);
+}
+
 void	handle_texture(int ray_count, int wall_height, t_game *game)
 {
-	float	delta_y;
-	float	wall_top;
-	float	current_y;
-	float	current_y_end;
+	float	v[3];
 	int		y;
 	int		color;
 	t_img	*texture;
 
 	texture = get_wall_texture(game);
-	delta_y = ((float)wall_height * 2) / (float)texture->height;
-	wall_top = ((float)WINDOW_HEIGHT / 2) - (float)wall_height;
-	current_y = wall_top;
+	v[0] = ((float)wall_height * 2) / (float)texture->height;
+	v[1] = get_wall_start(wall_height);
 	y = 0;
 	while (y < texture->height)
 	{
 		color = get_texture_color(texture, y, game);
-		current_y_end = current_y + delta_y;
-		while (current_y < current_y_end)
+		v[2] = v[1] + v[0];
+		while (v[1] < v[2])
 		{
-			if (current_y >= 0 && current_y < (float)WINDOW_HEIGHT)
-				set_pixel_color(ray_count, current_y, color, game);
-			current_y++;
+			if (v[1] >= 0 && v[1] < (float)WINDOW_HEIGHT)
+				set_pixel_color(ray_count, v[1], color, game);
+			v[1]++;
 		}
-		current_y = current_y_end;
+		v[1] = v[2];
 		y++;
 	}
 }
