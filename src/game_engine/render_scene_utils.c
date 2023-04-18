@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:06 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/16 17:09:03 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/18 13:26:27 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	is_within_ray_limit(int x, int y, t_game *game)
 
 int	is_wall(int x, int y, t_game *game)
 {
+	if (x < 0 || x >= game->map.height)
+		return (0);
+	if (y < 0 || y >= game->map.width)
+		return (0);
 	return (game->map.array[x][y] == '1');
 }
 
