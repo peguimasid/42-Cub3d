@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:08:15 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/17 19:19:49 by gmasid           ###   ########.fr       */
+/*   Updated: 2023/04/18 13:11:44 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	update_player_position(float ray_sin, float ray_cos, t_game *game)
 	new_y = game->player.y_pos + 0.5 + (3 * ray_sin);
 	curr_x = game->player.x_pos + 0.5;
 	curr_y = game->player.y_pos + 0.5;
-	if (game->map.array[new_x][curr_y] != '1')
+	if (!is_wall(new_x, curr_y, game))
 		game->player.x_pos += ray_cos;
-	if (game->map.array[curr_x][new_y] != '1')
+	if (!is_wall(curr_x, new_y, game))
 		game->player.y_pos += ray_sin;
 }
 
