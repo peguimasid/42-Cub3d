@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acalvo4 <acalvo4@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:53:12 by gmasid            #+#    #+#             */
-/*   Updated: 2023/04/25 14:56:07 by acalvo4          ###   ########.fr       */
+/*   Updated: 2023/04/26 10:53:48 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_ray(t_game *game)
 	game->ray.cos = 0;
 	game->ray.hfov = 30;
 	game->ray.increment_angle = 2 * game->ray.hfov / WINDOW_WIDTH;
-	game->ray.limit = 100;
+	game->ray.limit = 50;
 	game->ray.precision = 50;
 	game->ray.sin = 0;
 	game->ray.x_pos = 0;
